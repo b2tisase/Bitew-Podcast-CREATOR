@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bitew Podcast | The Bitew Foundation</title>
+  <title>TBF Podcast | THE BITEW FOUNDATION</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -43,13 +43,6 @@
       cursor: pointer;
       -webkit-appearance: none;
     }
-    .toggle-checkbox:checked {
-      right: 0;
-      border-color: #8b5cf6;
-    }
-    .toggle-checkbox:checked + .toggle-label {
-      background-color: #7c3aed;
-    }
   </style>
 </head>
 <body class="bg-surface-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-600 selection:text-white pb-32">
@@ -64,7 +57,7 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span id="nav-show-name" class="font-bold tracking-tight text-white">Bitew Podcast</span>
+          <span id="nav-show-name" class="font-bold tracking-tight text-white">TBF</span>
           <span class="text-[10px] uppercase font-semibold tracking-wider px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30">Official</span>
         </div>
         <p id="nav-creator-name" class="text-[11px] text-slate-400">BY THE BITEW FOUNDATION</p>
@@ -107,7 +100,7 @@
         <div class="space-y-3.5 flex-1 text-center md:text-left">
           <div>
             <div class="flex items-center justify-center md:justify-start gap-2.5 flex-wrap">
-              <h1 id="hero-title" class="text-2xl sm:text-3xl font-extrabold text-white">Bitew Podcast</h1>
+              <h1 id="hero-title" class="text-2xl sm:text-3xl font-extrabold text-white">TBF</h1>
               <span id="hero-category-tag" class="px-2.5 py-0.5 rounded-full text-xs bg-slate-800 text-slate-300 border border-slate-700">Arts</span>
             </div>
             <p id="hero-creator" class="text-xs text-brand-400 font-medium mt-0.5">By THE BITEW FOUNDATION</p>
@@ -120,15 +113,30 @@
             በአምባገነን መንግስት ሥር የሚኖሩ ዜጎች በሰብዓዊና ቁሳዊ እጦት እንዳይፈናቀሉ፤ ፍትህ እና እኩልነት እንዲሰፍን የሚተጋ የድምፅ መድረክ።
           </p>
 
-          <!-- External Distribution Chips -->
+          <!-- Distribution Chips (All Available Platforms) -->
           <div class="flex items-center justify-center md:justify-start gap-2 pt-1 flex-wrap">
-            <span class="text-xs text-slate-400 font-medium">Available on:</span>
+            <span class="text-xs text-slate-400 font-medium mr-1">Available on:</span>
+            
             <a id="chip-spotify" href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-emerald-500/50 hover:text-emerald-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Spotify
             </a>
-            <a href="https://podcasts.apple.com" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-purple-500/50 hover:text-purple-400 transition flex items-center gap-1.5">
+
+            <a id="chip-apple" href="https://podcasts.apple.com/us/podcast/tbf/id1586071693" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-purple-500/50 hover:text-purple-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-purple-500"></span> Apple Podcasts
             </a>
+
+            <a id="chip-amazon" href="https://music.amazon.com/podcasts" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-cyan-500/50 hover:text-cyan-400 transition flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Amazon Music
+            </a>
+
+            <a id="chip-pocketcasts" href="https://pca.st/itunes/1586071693" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-red-500/50 hover:text-red-400 transition flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-red-500"></span> Pocket Casts
+            </a>
+
+            <a id="chip-iheart" href="https://www.iheart.com/podcast/" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-rose-500/50 hover:text-rose-400 transition flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-rose-600"></span> iHeartRadio
+            </a>
+
             <a id="chip-rss" href="https://anchor.fm/s/6b532648/podcast/rss" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-amber-500/50 hover:text-amber-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-amber-500"></span> RSS Feed
             </a>
@@ -198,10 +206,9 @@
       </div>
     </div>
 
-    <!-- TAB 2: DETAILED SHOW SETTINGS (With Subtabs: Podcast / Comments / Availability / Team) -->
+    <!-- TAB 2: DETAILED SHOW SETTINGS -->
     <div id="admin-tab-settings" class="hidden bg-surface-900 border border-slate-800 rounded-xl p-6 space-y-6">
       
-      <!-- Show Banner Header -->
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-xl bg-black border border-slate-700 flex items-center justify-center text-amber-400 text-xs font-bold">
@@ -215,7 +222,6 @@
         <button onclick="saveAllSettings()" class="px-5 py-2 rounded-xl text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow-md shadow-brand-600/30 transition">Save Changes</button>
       </div>
 
-      <!-- Settings Sub-Navigation -->
       <div class="flex gap-4 border-b border-slate-800 text-xs font-medium">
         <button onclick="switchSettingsSubtab('details')" id="subtab-btn-details" class="pb-2 border-b-2 border-brand-500 text-white font-semibold">Podcast</button>
         <button onclick="switchSettingsSubtab('comments')" id="subtab-btn-comments" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Comments</button>
@@ -223,7 +229,7 @@
         <button onclick="switchSettingsSubtab('discovery')" id="subtab-btn-discovery" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Discovery & Assets</button>
       </div>
 
-      <!-- SUBTAB A: PODCAST DETAILS -->
+      <!-- SUBTAB A: DETAILS -->
       <div id="subtab-content-details" class="space-y-5 text-xs">
         <div>
           <div class="flex justify-between items-center mb-1">
@@ -239,7 +245,6 @@
             <span id="char-count-creator" class="text-[11px] text-slate-500">20/80</span>
           </div>
           <input id="input-creator-name" oninput="updateCharCount('creator', this.value, 80)" type="text" value="THE BITEW FOUNDATION" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-white focus:border-brand-500 focus:outline-none">
-          <p class="text-[11px] text-slate-500 mt-1">The host, creator, or organization name as it should appear alongside the show name.</p>
         </div>
 
         <div>
@@ -247,9 +252,7 @@
             <label class="font-semibold text-slate-300">Description</label>
             <span id="char-count-desc" class="text-[11px] text-slate-500">422/600</span>
           </div>
-          <textarea id="input-description" oninput="updateCharCount('desc', this.value, 600)" rows="4" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-white focus:border-brand-500 focus:outline-none fidel">To address, whenever possible, other issues affecting human life such as health care, economic development, human rights, environment, socio-economic aspects and women’s issues.
-
-በአምባገነን መንግስት ሥር የሚኖሩ ዜጎች በሰብዓዊና ቁሳዊ እጦት እንዳይፈናቀሉ፤ ፍትህ እና እኩልነት እንዲሰፍን የሚተጋ የድምፅ መድረክ።</textarea>
+          <textarea id="input-description" oninput="updateCharCount('desc', this.value, 600)" rows="4" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-white focus:border-brand-500 focus:outline-none fidel"></textarea>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -259,7 +262,6 @@
               <option value="Arts">Arts</option>
               <option value="Society & Culture">Society & Culture</option>
               <option value="News & Politics">News & Politics</option>
-              <option value="Education">Education</option>
             </select>
           </div>
           <div>
@@ -280,7 +282,7 @@
         </div>
       </div>
 
-      <!-- SUBTAB B: COMMENTS MODERATION -->
+      <!-- SUBTAB B: COMMENTS -->
       <div id="subtab-content-comments" class="hidden space-y-4 text-xs">
         <div class="flex items-center justify-between pb-3 border-b border-slate-800">
           <div>
@@ -306,31 +308,52 @@
         </div>
       </div>
 
-      <!-- SUBTAB C: AVAILABILITY & RSS DISTRIBUTION -->
+      <!-- SUBTAB C: AVAILABILITY & MULTI-PLATFORM DISTRIBUTION -->
       <div id="subtab-content-availability" class="hidden space-y-5 text-xs">
         <div>
-          <label class="font-semibold text-slate-300 mb-1 block">Spotify show page</label>
-          <div class="flex gap-2">
-            <input type="text" id="input-spotify-url" value="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono">
-            <a href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="px-3 py-2 rounded-lg bg-surface-800 border border-slate-700 hover:text-white">View ↗</a>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-2">Connected Podcast Platforms</h4>
+          <p class="text-slate-400 mb-4">Edit direct URLs for all directories your podcast is distributed to:</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="font-semibold text-emerald-400 block mb-1">Spotify Show Page</label>
+              <input id="input-spotify-url" type="text" value="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+            </div>
+
+            <div>
+              <label class="font-semibold text-purple-400 block mb-1">Apple Podcasts Page</label>
+              <input id="input-apple-url" type="text" value="https://podcasts.apple.com/us/podcast/tbf/id1586071693" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+            </div>
+
+            <div>
+              <label class="font-semibold text-cyan-400 block mb-1">Amazon Music Page</label>
+              <input id="input-amazon-url" type="text" value="https://music.amazon.com/podcasts" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+            </div>
+
+            <div>
+              <label class="font-semibold text-red-400 block mb-1">Pocket Casts Page</label>
+              <input id="input-pocketcasts-url" type="text" value="https://pca.st/itunes/1586071693" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+            </div>
+
+            <div>
+              <label class="font-semibold text-rose-400 block mb-1">iHeartRadio Page</label>
+              <input id="input-iheart-url" type="text" value="https://www.iheart.com/podcast/" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+            </div>
+
+            <div>
+              <label class="font-semibold text-amber-400 block mb-1">Master RSS Feed</label>
+              <input id="rss-feed-input" type="text" readonly value="https://anchor.fm/s/6b532648/podcast/rss" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-400 font-mono text-[11px]">
+            </div>
           </div>
         </div>
 
         <div class="space-y-3 pt-3 border-t border-slate-800">
-          <h4 class="font-bold text-white uppercase tracking-wider text-[11px]">RSS Distribution</h4>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px]">RSS Feed Verification</h4>
           <div>
-            <label class="text-slate-400 mb-1 block">RSS Feed URL</label>
-            <div class="flex gap-2">
-              <input id="rss-feed-input" type="text" readonly value="https://anchor.fm/s/6b532648/podcast/rss" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-400 font-mono select-all">
-              <button onclick="copyRssFromInput()" class="px-3.5 py-2 rounded-lg bg-brand-600 text-white font-medium">Copy</button>
-            </div>
-          </div>
-
-          <div>
-            <label class="text-slate-400 mb-1 block">Email added to RSS feed</label>
+            <label class="text-slate-400 mb-1 block">Email in RSS feed</label>
             <div class="flex gap-2">
               <input id="input-rss-email" type="email" value="btisase@yahoo.com" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-200">
-              <button onclick="alert('RSS contact email updated!')" class="px-3 py-2 bg-surface-800 border border-slate-700 rounded-lg text-slate-300 hover:text-white">Update</button>
+              <button onclick="alert('RSS contact email verified!')" class="px-3 py-2 bg-surface-800 border border-slate-700 rounded-lg text-slate-300 hover:text-white">Update</button>
             </div>
           </div>
 
@@ -341,16 +364,16 @@
         </div>
 
         <div class="pt-4 border-t border-slate-800">
-          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-2">Podcast Management & Migration</h4>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-2">Migration & Redirection</h4>
           <label class="text-slate-400 block mb-1">Redirect your podcast (301 Permanent Redirect)</label>
           <div class="flex gap-2">
             <input type="text" placeholder="https://www.newhost.com/podcastname/rss" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono">
-            <button onclick="alert('301 Redirect registered.')" class="px-3 py-2 bg-purple-600/30 text-purple-300 border border-purple-500/40 rounded-lg hover:bg-purple-600/40">Redirect</button>
+            <button onclick="alert('301 Redirect scheduled.')" class="px-3 py-2 bg-purple-600/30 text-purple-300 border border-purple-500/40 rounded-lg hover:bg-purple-600/40">Redirect</button>
           </div>
         </div>
       </div>
 
-      <!-- SUBTAB D: DISCOVERY & EPISODE ASSETS -->
+      <!-- SUBTAB D: DISCOVERY & ASSETS -->
       <div id="subtab-content-discovery" class="hidden space-y-5 text-xs">
         <div>
           <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-1">Discovery</h4>
@@ -397,7 +420,6 @@
   <div id="modal-wizard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6">
     <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
       
-      <!-- Wizard Top Bar -->
       <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
         <div>
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Create episode</span>
@@ -412,7 +434,6 @@
         <button onclick="requestCloseWizard()" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
       </div>
 
-      <!-- Step Content Area -->
       <div class="p-6 overflow-y-auto flex-1 space-y-6 text-xs text-slate-300">
         
         <!-- STEP 1: UPLOAD -->
@@ -444,7 +465,6 @@
               <label class="font-semibold text-slate-200">Description *</label>
               <span id="wizard-desc-count" class="text-[11px] text-slate-500">0/4000</span>
             </div>
-            <!-- Rich Text Quick Bar -->
             <div class="flex gap-2 p-1.5 bg-surface-950 rounded-t-xl border border-slate-800 border-b-0 text-slate-400 text-xs">
               <button onclick="appendFormat('**')" class="px-2 py-0.5 hover:text-white font-bold">B</button>
               <button onclick="appendFormat('*')" class="px-2 py-0.5 hover:text-white italic">I</button>
@@ -454,7 +474,6 @@
             <textarea id="wizard-input-desc" oninput="updateWizardDescCount(this.value)" rows="4" placeholder="What else do you want your audience to know?" class="w-full px-3.5 py-2 rounded-b-xl bg-surface-950 border border-slate-800 text-white fidel focus:outline-none focus:border-brand-500"></textarea>
           </div>
 
-          <!-- Episode Art & Mini Player Preview -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex items-center gap-3">
               <div class="w-12 h-12 rounded-lg bg-black border border-slate-700 flex items-center justify-center text-amber-400 font-bold text-xs">
@@ -479,7 +498,6 @@
             </div>
           </div>
 
-          <!-- Content Checks -->
           <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 space-y-2">
             <span class="font-bold text-slate-300 uppercase tracking-wider text-[11px]">Content checks</span>
             <label class="flex items-center justify-between">
@@ -524,7 +542,6 @@
         </div>
       </div>
 
-      <!-- Wizard Footer Navigation -->
       <div class="px-6 py-4 border-t border-slate-800 bg-surface-950 flex items-center justify-between">
         <button id="wizard-back-btn" onclick="wizardBack()" class="px-4 py-2 rounded-xl text-slate-400 hover:text-white transition">Back</button>
         <button id="wizard-next-btn" onclick="wizardNext()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold shadow transition">Next: Details</button>
@@ -532,7 +549,7 @@
     </div>
   </div>
 
-  <!-- ==================== SAVE DRAFT EXIT PROMPT MODAL ==================== -->
+  <!-- SAVE DRAFT MODAL -->
   <div id="modal-draft-prompt" class="fixed inset-0 z-60 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-sm w-full p-5 shadow-2xl space-y-4">
       <div>
@@ -546,7 +563,7 @@
     </div>
   </div>
 
-  <!-- ==================== EPISODE DETAIL & NOTES MODAL ==================== -->
+  <!-- EPISODE DETAIL MODAL -->
   <div id="modal-notes" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-5 border-b border-slate-800 flex items-start justify-between gap-4">
@@ -582,7 +599,7 @@
     </div>
   </div>
 
-  <!-- ==================== PERSISTENT BOTTOM AUDIO PLAYER ==================== -->
+  <!-- PERSISTENT AUDIO PLAYER -->
   <footer class="fixed bottom-0 inset-x-0 z-40 bg-surface-900/95 backdrop-blur-lg border-t border-slate-800 px-4 py-3 shadow-2xl">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
       
@@ -632,7 +649,6 @@
 
   <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
-    // Saved Settings Store
     const DEFAULT_SETTINGS = {
       showName: "TBF",
       creatorName: "THE BITEW FOUNDATION",
@@ -641,12 +657,15 @@
       language: "Amharic",
       explicit: false,
       spotifyUrl: "https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh",
+      appleUrl: "https://podcasts.apple.com/us/podcast/tbf/id1586071693",
+      amazonUrl: "https://music.amazon.com/podcasts",
+      pocketcastsUrl: "https://pca.st/itunes/1586071693",
+      iheartUrl: "https://www.iheart.com/podcast/",
       rssEmail: "btisase@yahoo.com"
     };
 
     let showSettings = JSON.parse(localStorage.getItem('bitew_podcast_settings')) || DEFAULT_SETTINGS;
 
-    // Episodes Store with localStorage persistence
     const INITIAL_EPISODES = [
       {
         id: "1",
@@ -682,11 +701,9 @@
 
     let episodes = JSON.parse(localStorage.getItem('bitew_podcast_episodes')) || INITIAL_EPISODES;
 
-    // Audio & State Variables
     let currentEpisode = null;
     let wizardCurrentStep = 1;
     let wizardAudioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-    let wizardAudioName = "";
 
     const audio = document.getElementById('audio-engine');
     const playIcon = document.getElementById('play-icon');
@@ -702,9 +719,8 @@
     const speeds = [1.0, 1.25, 1.5, 2.0];
     let speedIdx = 0;
 
-    // Apply Settings to UI
     function applySettingsToUI() {
-      document.getElementById('nav-show-name').textContent = showSettings.showName || "Bitew Podcast";
+      document.getElementById('nav-show-name').textContent = showSettings.showName || "TBF";
       document.getElementById('nav-creator-name').textContent = `BY ${showSettings.creatorName || "THE BITEW FOUNDATION"}`;
       document.getElementById('hero-title').textContent = showSettings.showName;
       document.getElementById('hero-creator').textContent = `By ${showSettings.creatorName}`;
@@ -719,7 +735,14 @@
         document.getElementById('hero-desc-am').classList.add('hidden');
       }
 
-      // Populate Settings inputs
+      // Update external platform buttons
+      document.getElementById('chip-spotify').href = showSettings.spotifyUrl || '#';
+      document.getElementById('chip-apple').href = showSettings.appleUrl || '#';
+      document.getElementById('chip-amazon').href = showSettings.amazonUrl || '#';
+      document.getElementById('chip-pocketcasts').href = showSettings.pocketcastsUrl || '#';
+      document.getElementById('chip-iheart').href = showSettings.iheartUrl || '#';
+
+      // Inputs
       document.getElementById('input-show-name').value = showSettings.showName;
       document.getElementById('input-creator-name').value = showSettings.creatorName;
       document.getElementById('input-description').value = showSettings.description;
@@ -727,6 +750,10 @@
       document.getElementById('select-language').value = showSettings.language;
       document.getElementById('toggle-explicit').checked = showSettings.explicit;
       document.getElementById('input-spotify-url').value = showSettings.spotifyUrl;
+      document.getElementById('input-apple-url').value = showSettings.appleUrl;
+      document.getElementById('input-amazon-url').value = showSettings.amazonUrl;
+      document.getElementById('input-pocketcasts-url').value = showSettings.pocketcastsUrl;
+      document.getElementById('input-iheart-url').value = showSettings.iheartUrl;
       document.getElementById('input-rss-email').value = showSettings.rssEmail;
 
       updateCharCount('name', showSettings.showName, 100);
@@ -743,18 +770,21 @@
         language: document.getElementById('select-language').value,
         explicit: document.getElementById('toggle-explicit').checked,
         spotifyUrl: document.getElementById('input-spotify-url').value,
+        appleUrl: document.getElementById('input-apple-url').value,
+        amazonUrl: document.getElementById('input-amazon-url').value,
+        pocketcastsUrl: document.getElementById('input-pocketcasts-url').value,
+        iheartUrl: document.getElementById('input-iheart-url').value,
         rssEmail: document.getElementById('input-rss-email').value
       };
       localStorage.setItem('bitew_podcast_settings', JSON.stringify(showSettings));
       applySettingsToUI();
-      alert('Show Settings & Availability successfully saved!');
+      alert('All show and platform settings successfully saved!');
     }
 
     function updateCharCount(field, val, max) {
       document.getElementById(`char-count-${field}`).textContent = `${val.length}/${max}`;
     }
 
-    // Settings Sub-tab Switcher
     function switchSettingsSubtab(sub) {
       ['details', 'comments', 'availability', 'discovery'].forEach(s => {
         document.getElementById(`subtab-content-${s}`).classList.add('hidden');
@@ -764,7 +794,6 @@
       document.getElementById(`subtab-btn-${sub}`).className = "pb-2 border-b-2 border-brand-500 text-white font-semibold";
     }
 
-    // View Switching
     function toggleView(view) {
       if (view === 'creator') {
         document.getElementById('view-public').classList.add('hidden');
@@ -785,7 +814,6 @@
       document.getElementById(`tab-btn-${tab}`).className = "pb-2.5 px-3 border-b-2 border-brand-500 text-white font-semibold";
     }
 
-    // Public Episodes Renderer
     function renderEpisodes(list = episodes) {
       const container = document.getElementById('episodes-container');
       document.getElementById('episode-count').textContent = `${list.length} Episodes available`;
@@ -826,7 +854,6 @@
       });
     }
 
-    // Audio Playback
     function playEpisode(id) {
       const ep = episodes.find(e => e.id === id);
       if (!ep) return;
@@ -844,7 +871,7 @@
 
       audio.src = ep.audioUrl;
       audio.load();
-      audio.play().catch(e => console.log('Audio stream starting:', e));
+      audio.play().catch(e => console.log('Audio playing:', e));
       updatePlayerUI();
       renderEpisodes();
     }
@@ -917,7 +944,6 @@
       return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
     }
 
-    // Modal Operations
     function openNotesModal(id) {
       const ep = episodes.find(e => e.id === id);
       if (!ep) return;
@@ -947,7 +973,7 @@
       input.value = '';
     }
 
-    // ==================== 3-STEP WIZARD LOGIC ====================
+    // Wizard
     function openWizardStep(step) {
       wizardCurrentStep = step;
       document.getElementById('modal-wizard').classList.remove('hidden');
@@ -972,7 +998,6 @@
       } else if (step === 3) {
         backBtn.classList.remove('invisible');
         nextBtn.textContent = "Publish Episode";
-        // populate review
         document.getElementById('review-title').textContent = document.getElementById('wizard-input-title').value || "Untitled Episode";
         document.getElementById('review-desc').textContent = document.getElementById('wizard-input-desc').value || "No show notes.";
       }
@@ -994,9 +1019,7 @@
     }
 
     function wizardBack() {
-      if (wizardCurrentStep > 1) {
-        openWizardStep(wizardCurrentStep - 1);
-      }
+      if (wizardCurrentStep > 1) openWizardStep(wizardCurrentStep - 1);
     }
 
     function requestCloseWizard() {
@@ -1059,7 +1082,6 @@
       const file = event.target.files[0];
       if (file) {
         wizardAudioUrl = URL.createObjectURL(file);
-        wizardAudioName = file.name;
         document.getElementById('wizard-upload-status').textContent = `Loaded: ${file.name}`;
       }
     }
@@ -1082,7 +1104,6 @@
       localStorage.setItem('bitew_podcast_episodes', JSON.stringify(episodes));
     }
 
-    // Admin Table Renderer
     function renderAdminTable() {
       const table = document.getElementById('admin-episodes-table');
       table.innerHTML = '';
@@ -1109,15 +1130,6 @@
       });
     }
 
-    function copyRssFromInput() {
-      const copyText = document.getElementById("rss-feed-input");
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(copyText.value);
-      alert("RSS Feed URL copied to clipboard!");
-    }
-
-    // Live Search
     function handleSearch() {
       const q = document.getElementById('search-input').value.toLowerCase();
       const filtered = episodes.filter(e => 
@@ -1126,7 +1138,6 @@
       renderEpisodes(filtered);
     }
 
-    // Initialize on Load
     window.addEventListener('DOMContentLoaded', () => {
       applySettingsToUI();
       renderEpisodes();
