@@ -43,6 +43,13 @@
       cursor: pointer;
       -webkit-appearance: none;
     }
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #8b5cf6;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #7c3aed;
+    }
   </style>
 </head>
 <body class="bg-surface-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-600 selection:text-white pb-32">
@@ -57,10 +64,10 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-bold tracking-tight text-white">Bitew Podcast</span>
+          <span id="nav-show-name" class="font-bold tracking-tight text-white">Bitew Podcast</span>
           <span class="text-[10px] uppercase font-semibold tracking-wider px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30">Official</span>
         </div>
-        <p class="text-[11px] text-slate-400">BY THE BITEW FOUNDATION</p>
+        <p id="nav-creator-name" class="text-[11px] text-slate-400">BY THE BITEW FOUNDATION</p>
       </div>
     </div>
 
@@ -83,13 +90,13 @@
     <!-- SHOW HERO BANNER -->
     <section class="bg-gradient-to-br from-surface-800 via-surface-900 to-surface-950 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
       <div class="relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
-        <!-- Artwork Badge -->
+        <!-- Show Artwork Badge -->
         <div class="relative group mx-auto md:mx-0 shrink-0">
           <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-black border border-slate-700/80 shadow-2xl flex flex-col items-center justify-center text-center p-4 relative overflow-hidden">
             <div class="w-20 h-20 rounded-full border-2 border-amber-500/80 flex items-center justify-center mb-2 shadow-inner">
               <span class="text-amber-400 font-bold text-xs tracking-wider">TBF</span>
             </div>
-            <p class="text-[11px] font-bold text-white tracking-widest uppercase">TBF PODCAST</p>
+            <p id="hero-badge-title" class="text-[11px] font-bold text-white tracking-widest uppercase">TBF PODCAST</p>
           </div>
           <button onclick="playFeatured()" class="absolute bottom-2 right-2 p-3 bg-brand-600 hover:bg-brand-500 rounded-full text-white shadow-lg shadow-brand-600/50 transition transform hover:scale-105 active:scale-95">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -100,29 +107,29 @@
         <div class="space-y-3.5 flex-1 text-center md:text-left">
           <div>
             <div class="flex items-center justify-center md:justify-start gap-2.5 flex-wrap">
-              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Bitew Podcast</h1>
-              <span class="px-2.5 py-0.5 rounded-full text-xs bg-slate-800 text-slate-300 border border-slate-700">Society & Culture</span>
+              <h1 id="hero-title" class="text-2xl sm:text-3xl font-extrabold text-white">Bitew Podcast</h1>
+              <span id="hero-category-tag" class="px-2.5 py-0.5 rounded-full text-xs bg-slate-800 text-slate-300 border border-slate-700">Arts</span>
             </div>
-            <p class="text-xs text-brand-400 font-medium mt-0.5">By THE BITEW FOUNDATION</p>
+            <p id="hero-creator" class="text-xs text-brand-400 font-medium mt-0.5">By THE BITEW FOUNDATION</p>
           </div>
 
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
-            To address, whenever possible, other issues affecting human life such as health care, economic development, human rights, environment, socio-economic aspects, and women’s issues.
+          <p id="hero-desc-en" class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
+            To address, whenever possible, other issues affecting human life such as health care, economic development, human rights, environment, socio-economic aspects and women’s issues.
           </p>
-          <p class="text-xs sm:text-sm text-slate-400 fidel leading-relaxed max-w-2xl">
-            የማህበረሰባችንን ሁለንተናዊ ጤና፣ ሰብአዊ መብት፣ የኢኮኖሚ እና ማህበራዊ እድገትን በማስተዋወቅ ዙሪያ ውይይት የሚያደርግ የድምፅ መድረክ።
+          <p id="hero-desc-am" class="text-xs sm:text-sm text-slate-400 fidel leading-relaxed max-w-2xl">
+            በአምባገነን መንግስት ሥር የሚኖሩ ዜጎች በሰብዓዊና ቁሳዊ እጦት እንዳይፈናቀሉ፤ ፍትህ እና እኩልነት እንዲሰፍን የሚተጋ የድምፅ መድረክ።
           </p>
 
           <!-- External Distribution Chips -->
           <div class="flex items-center justify-center md:justify-start gap-2 pt-1 flex-wrap">
             <span class="text-xs text-slate-400 font-medium">Available on:</span>
-            <a href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-emerald-500/50 hover:text-emerald-400 transition flex items-center gap-1.5">
+            <a id="chip-spotify" href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-emerald-500/50 hover:text-emerald-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Spotify
             </a>
-            <a href="#" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-purple-500/50 hover:text-purple-400 transition flex items-center gap-1.5">
+            <a href="https://podcasts.apple.com" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-purple-500/50 hover:text-purple-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-purple-500"></span> Apple Podcasts
             </a>
-            <a href="https://anchor.fm/s/6b532648/podcast/rss" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-amber-500/50 hover:text-amber-400 transition flex items-center gap-1.5">
+            <a id="chip-rss" href="https://anchor.fm/s/6b532648/podcast/rss" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-amber-500/50 hover:text-amber-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-amber-500"></span> RSS Feed
             </a>
           </div>
@@ -142,34 +149,34 @@
     </div>
 
     <!-- EPISODES LIST CONTAINER -->
-    <div id="episodes-container" class="space-y-3">
-      <!-- Populated via JavaScript -->
-    </div>
+    <div id="episodes-container" class="space-y-3"></div>
   </main>
 
   <!-- ==================== CREATOR / ADMIN VIEW ==================== -->
   <main id="view-creator" class="hidden w-full max-w-5xl mx-auto px-4 sm:px-6 pt-6 space-y-6 flex-1">
+    
     <div class="flex items-center justify-between border-b border-slate-800 pb-4">
       <div>
-        <h2 class="text-xl font-bold text-white">Creator Studio</h2>
-        <p class="text-xs text-slate-400">Manage episodes, draft show settings, and track distribution</p>
+        <h2 class="text-xl font-bold text-white">Show settings & Episodes</h2>
+        <p class="text-xs text-slate-400">Manage catalog, discovery, availability, and multi-step episode publishing</p>
       </div>
       <button onclick="toggleView('public')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-surface-800 border border-slate-700 hover:bg-slate-700 transition">
         ← Back to Listener View
       </button>
     </div>
 
+    <!-- MAIN ADMIN TABS -->
     <div class="flex gap-2 border-b border-slate-800 text-xs font-medium">
       <button onclick="switchAdminTab('episodes')" id="tab-btn-episodes" class="pb-2.5 px-3 border-b-2 border-brand-500 text-white font-semibold">Episodes</button>
-      <button onclick="switchAdminTab('new')" id="tab-btn-new" class="pb-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">New Episode (Upload)</button>
+      <button onclick="openWizardStep(1)" id="tab-btn-wizard" class="pb-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">+ Create Episode</button>
       <button onclick="switchAdminTab('settings')" id="tab-btn-settings" class="pb-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Show Settings</button>
     </div>
 
-    <!-- TAB 1: EPISODE MANAGER -->
+    <!-- TAB 1: EPISODES MANAGER TABLE -->
     <div id="admin-tab-episodes" class="space-y-4">
       <div class="flex items-center justify-between">
         <span class="text-xs text-slate-400">Manage existing audio catalog</span>
-        <button onclick="switchAdminTab('new')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white transition">+ Create Episode</button>
+        <button onclick="openWizardStep(1)" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow transition">+ New Episode</button>
       </div>
       <div class="bg-surface-900 border border-slate-800 rounded-xl overflow-hidden">
         <div class="overflow-x-auto">
@@ -179,7 +186,8 @@
                 <th class="py-3 px-4">Title</th>
                 <th class="py-3 px-4">Status</th>
                 <th class="py-3 px-4">Date</th>
-                <th class="py-3 px-4">Duration</th>
+                <th class="py-3 px-4">Format</th>
+                <th class="py-3 px-4">Length</th>
                 <th class="py-3 px-4">Plays</th>
                 <th class="py-3 px-4 text-right">Actions</th>
               </tr>
@@ -190,85 +198,353 @@
       </div>
     </div>
 
-    <!-- TAB 2: MULTI-STEP CREATION WIZARD -->
-    <div id="admin-tab-new" class="hidden bg-surface-900 border border-slate-800 rounded-xl p-6 space-y-6">
-      <div class="border-b border-slate-800 pb-4">
-        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Create Episode</h3>
-        <p class="text-xs text-slate-400">Step through audio upload, metadata and distribution</p>
-      </div>
-
-      <form id="new-episode-form" onsubmit="handleCreateEpisode(event)" class="space-y-5">
-        <div class="space-y-2">
-          <label class="block text-xs font-semibold text-slate-300">1. Audio File (.mp3, .m4a, .wav)</label>
-          <div class="border-2 border-dashed border-slate-700 hover:border-brand-500/80 rounded-xl p-6 text-center cursor-pointer transition relative">
-            <input type="file" id="new-ep-audiofile" accept="audio/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handleLocalFileSelected(event)">
-            <svg class="w-8 h-8 mx-auto text-slate-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-            <p id="upload-status-text" class="text-xs text-slate-300 font-medium">Choose an audio file from your device</p>
-            <p class="text-[11px] text-slate-500 mt-1">Accepts local audio files to test immediate playback</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-slate-300">Episode Title</label>
-            <input required id="new-ep-title" type="text" placeholder="e.g. የአማራ ፋኖ የህልውና ትግል ውይይት" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-brand-500">
-          </div>
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-slate-300">Duration (Format mm:ss)</label>
-            <input id="new-ep-duration" type="text" placeholder="e.g. 45:10" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-brand-500">
-          </div>
-        </div>
-
-        <div class="space-y-1.5">
-          <label class="block text-xs font-semibold text-slate-300">Show Notes / Episode Description</label>
-          <textarea id="new-ep-desc" rows="4" placeholder="Enter bilingual show notes and overview..." class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-brand-500"></textarea>
-        </div>
-
-        <div class="flex justify-end gap-3 pt-2 border-t border-slate-800">
-          <button type="button" onclick="switchAdminTab('episodes')" class="px-4 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">Cancel</button>
-          <button type="submit" class="px-5 py-2 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow-md shadow-brand-600/30 transition">Publish Episode</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- TAB 3: SHOW SETTINGS -->
+    <!-- TAB 2: DETAILED SHOW SETTINGS (With Subtabs: Podcast / Comments / Availability / Team) -->
     <div id="admin-tab-settings" class="hidden bg-surface-900 border border-slate-800 rounded-xl p-6 space-y-6">
-      <div class="border-b border-slate-800 pb-4">
-        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Show & Moderation Settings</h3>
-        <p class="text-xs text-slate-400">Configure global metadata and distribution rules</p>
+      
+      <!-- Show Banner Header -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-black border border-slate-700 flex items-center justify-center text-amber-400 text-xs font-bold">
+            TBF
+          </div>
+          <div>
+            <h3 id="settings-header-name" class="text-base font-bold text-white">TBF</h3>
+            <p id="settings-header-creator" class="text-xs text-slate-400">THE BITEW FOUNDATION</p>
+          </div>
+        </div>
+        <button onclick="saveAllSettings()" class="px-5 py-2 rounded-xl text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow-md shadow-brand-600/30 transition">Save Changes</button>
       </div>
 
-      <div class="space-y-4 text-xs">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-slate-300 font-semibold mb-1">Show Name</label>
-            <input type="text" value="Bitew Podcast" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-200">
+      <!-- Settings Sub-Navigation -->
+      <div class="flex gap-4 border-b border-slate-800 text-xs font-medium">
+        <button onclick="switchSettingsSubtab('details')" id="subtab-btn-details" class="pb-2 border-b-2 border-brand-500 text-white font-semibold">Podcast</button>
+        <button onclick="switchSettingsSubtab('comments')" id="subtab-btn-comments" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Comments</button>
+        <button onclick="switchSettingsSubtab('availability')" id="subtab-btn-availability" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Availability</button>
+        <button onclick="switchSettingsSubtab('discovery')" id="subtab-btn-discovery" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Discovery & Assets</button>
+      </div>
+
+      <!-- SUBTAB A: PODCAST DETAILS -->
+      <div id="subtab-content-details" class="space-y-5 text-xs">
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="font-semibold text-slate-300">Show name</label>
+            <span id="char-count-name" class="text-[11px] text-slate-500">4/100</span>
           </div>
-          <div>
-            <label class="block text-slate-300 font-semibold mb-1">Creator Name</label>
-            <input type="text" value="THE BITEW FOUNDATION" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-200">
-          </div>
+          <input id="input-show-name" oninput="updateCharCount('name', this.value, 100)" type="text" value="TBF" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-white focus:border-brand-500 focus:outline-none">
         </div>
 
         <div>
-          <label class="block text-slate-300 font-semibold mb-1">Live Spotify RSS Link</label>
-          <input type="text" readonly value="https://anchor.fm/s/6b532648/podcast/rss" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-400 font-mono">
+          <div class="flex justify-between items-center mb-1">
+            <label class="font-semibold text-slate-300">Creator name</label>
+            <span id="char-count-creator" class="text-[11px] text-slate-500">20/80</span>
+          </div>
+          <input id="input-creator-name" oninput="updateCharCount('creator', this.value, 80)" type="text" value="THE BITEW FOUNDATION" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-white focus:border-brand-500 focus:outline-none">
+          <p class="text-[11px] text-slate-500 mt-1">The host, creator, or organization name as it should appear alongside the show name.</p>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="font-semibold text-slate-300">Description</label>
+            <span id="char-count-desc" class="text-[11px] text-slate-500">422/600</span>
+          </div>
+          <textarea id="input-description" oninput="updateCharCount('desc', this.value, 600)" rows="4" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-white focus:border-brand-500 focus:outline-none fidel">To address, whenever possible, other issues affecting human life such as health care, economic development, human rights, environment, socio-economic aspects and women’s issues.
+
+በአምባገነን መንግስት ሥር የሚኖሩ ዜጎች በሰብዓዊና ቁሳዊ እጦት እንዳይፈናቀሉ፤ ፍትህ እና እኩልነት እንዲሰፍን የሚተጋ የድምፅ መድረክ።</textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="font-semibold text-slate-300 mb-1 block">Category</label>
+            <select id="select-category" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-white focus:outline-none">
+              <option value="Arts">Arts</option>
+              <option value="Society & Culture">Society & Culture</option>
+              <option value="News & Politics">News & Politics</option>
+              <option value="Education">Education</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-semibold text-slate-300 mb-1 block">Language</label>
+            <select id="select-language" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-white focus:outline-none">
+              <option value="Amharic">Amharic (አማርኛ)</option>
+              <option value="English">English</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+          <div>
+            <span class="font-semibold text-slate-200">Explicit content</span>
+            <p class="text-[11px] text-slate-500">Help fans of all ages avoid unwanted explicit content.</p>
+          </div>
+          <input type="checkbox" id="toggle-explicit" class="w-4 h-4 rounded bg-surface-950 border-slate-700 text-brand-600 focus:ring-0">
+        </div>
+      </div>
+
+      <!-- SUBTAB B: COMMENTS MODERATION -->
+      <div id="subtab-content-comments" class="hidden space-y-4 text-xs">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+          <div>
+            <span class="font-semibold text-white">Enable comments</span>
+            <p class="text-[11px] text-slate-400">Comments are on for your show. If turned off, all existing comments will be hidden.</p>
+          </div>
+          <input type="checkbox" id="toggle-comments-active" checked class="w-4 h-4 rounded bg-surface-950 border-slate-700 text-brand-600 focus:ring-0">
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-semibold text-slate-300">Moderation Filter</label>
+          <div class="space-y-1.5">
+            <label class="flex items-center gap-2 text-slate-300">
+              <input type="radio" name="moderation-level" value="low" class="text-brand-600"> Low: Don't hold any comments
+            </label>
+            <label class="flex items-center gap-2 text-slate-300">
+              <input type="radio" name="moderation-level" value="standard" checked class="text-brand-600"> Standard: Hold potentially inappropriate or sensitive comments
+            </label>
+            <label class="flex items-center gap-2 text-slate-300">
+              <input type="radio" name="moderation-level" value="high" class="text-brand-600"> High: Hold all comments for review
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBTAB C: AVAILABILITY & RSS DISTRIBUTION -->
+      <div id="subtab-content-availability" class="hidden space-y-5 text-xs">
+        <div>
+          <label class="font-semibold text-slate-300 mb-1 block">Spotify show page</label>
+          <div class="flex gap-2">
+            <input type="text" id="input-spotify-url" value="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono">
+            <a href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="px-3 py-2 rounded-lg bg-surface-800 border border-slate-700 hover:text-white">View ↗</a>
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-slate-800">
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px]">RSS Distribution</h4>
+          <div>
+            <label class="text-slate-400 mb-1 block">RSS Feed URL</label>
+            <div class="flex gap-2">
+              <input id="rss-feed-input" type="text" readonly value="https://anchor.fm/s/6b532648/podcast/rss" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-400 font-mono select-all">
+              <button onclick="copyRssFromInput()" class="px-3.5 py-2 rounded-lg bg-brand-600 text-white font-medium">Copy</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-slate-400 mb-1 block">Email added to RSS feed</label>
+            <div class="flex gap-2">
+              <input id="input-rss-email" type="email" value="btisase@yahoo.com" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-200">
+              <button onclick="alert('RSS contact email updated!')" class="px-3 py-2 bg-surface-800 border border-slate-700 rounded-lg text-slate-300 hover:text-white">Update</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-slate-400 mb-1 block">Apple Podcasts claim code</label>
+            <input type="text" placeholder="Enter your token from Apple Podcasts Connect" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-200">
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800">
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-2">Podcast Management & Migration</h4>
+          <label class="text-slate-400 block mb-1">Redirect your podcast (301 Permanent Redirect)</label>
+          <div class="flex gap-2">
+            <input type="text" placeholder="https://www.newhost.com/podcastname/rss" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono">
+            <button onclick="alert('301 Redirect registered.')" class="px-3 py-2 bg-purple-600/30 text-purple-300 border border-purple-500/40 rounded-lg hover:bg-purple-600/40">Redirect</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBTAB D: DISCOVERY & EPISODE ASSETS -->
+      <div id="subtab-content-discovery" class="hidden space-y-5 text-xs">
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-1">Discovery</h4>
+          <p class="text-slate-400 mb-2">Set where new listeners begin discovering your episodes.</p>
+          <div class="p-3 bg-surface-950 rounded-lg border border-slate-800 flex items-center justify-between">
+            <span class="text-slate-200">✓ Set to latest episode as best place to start</span>
+            <button class="text-brand-400 hover:underline">Change</button>
+          </div>
         </div>
 
         <div class="pt-3 border-t border-slate-800 space-y-3">
-          <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px]">Comment Moderation</h4>
-          <label class="flex items-center gap-2 cursor-pointer text-slate-300">
-            <input type="checkbox" checked class="rounded bg-surface-950 border-slate-700 text-brand-600">
-            Hold comments with sensitive words for review
-          </label>
-        </div>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px]">Episode Assets</h4>
+          <div class="space-y-2">
+            <label class="flex items-center justify-between p-3 bg-surface-950 rounded-lg border border-slate-800">
+              <div>
+                <span class="text-slate-200 block font-medium">Auto-generate episode previews</span>
+                <span class="text-slate-500 text-[11px]">Creates short clips under 1 minute for social discovery</span>
+              </div>
+              <input type="checkbox" checked class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
+            </label>
 
-        <div class="pt-4 flex justify-end">
-          <button onclick="alert('Settings saved successfully!')" class="px-4 py-2 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white transition">Save Changes</button>
+            <label class="flex items-center justify-between p-3 bg-surface-950 rounded-lg border border-slate-800">
+              <div>
+                <span class="text-slate-200 block font-medium">Distribute transcripts across other platforms via RSS</span>
+                <span class="text-slate-500 text-[11px]">Helps fans read along and improves accessibility</span>
+              </div>
+              <input type="checkbox" checked class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
+            </label>
+
+            <label class="flex items-center justify-between p-3 bg-surface-950 rounded-lg border border-slate-800">
+              <div>
+                <span class="text-slate-200 block font-medium">Create chapters automatically</span>
+                <span class="text-slate-500 text-[11px]">Extracts timestamp bookmarks from show notes</span>
+              </div>
+              <input type="checkbox" checked class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
+            </label>
+          </div>
         </div>
       </div>
     </div>
   </main>
+
+  <!-- ==================== 3-STEP EPISODE CREATOR WIZARD MODAL ==================== -->
+  <div id="modal-wizard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6">
+    <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Wizard Top Bar -->
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Create episode</span>
+          <div class="flex items-center gap-2 text-xs font-semibold mt-0.5">
+            <span id="step-crumb-1" class="text-brand-400">Upload</span>
+            <span class="text-slate-600">›</span>
+            <span id="step-crumb-2" class="text-slate-500">Details</span>
+            <span class="text-slate-600">›</span>
+            <span id="step-crumb-3" class="text-slate-500">Review</span>
+          </div>
+        </div>
+        <button onclick="requestCloseWizard()" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+      </div>
+
+      <!-- Step Content Area -->
+      <div class="p-6 overflow-y-auto flex-1 space-y-6 text-xs text-slate-300">
+        
+        <!-- STEP 1: UPLOAD -->
+        <div id="wizard-step-1" class="space-y-4">
+          <div class="text-center py-8 border-2 border-dashed border-slate-700 hover:border-brand-500 rounded-2xl bg-surface-950 p-6 relative cursor-pointer">
+            <input type="file" id="wizard-file-input" accept="audio/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handleWizardFilePick(event)">
+            <svg class="w-12 h-12 mx-auto text-brand-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+            <h4 id="wizard-upload-status" class="text-sm font-bold text-white">Drag and drop audio or select file</h4>
+            <p class="text-slate-500 text-[11px] mt-1">Accepts MP3, M4A, WAV up to 250MB</p>
+          </div>
+          <div class="p-4 bg-surface-950 rounded-xl border border-slate-800 flex items-center justify-between">
+            <span class="text-slate-400">Need to record an episode directly?</span>
+            <button onclick="alert('Connect external microphone or recorder.')" class="px-3 py-1.5 bg-surface-800 hover:bg-slate-700 rounded-lg text-slate-200">Record Live</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: DETAILS -->
+        <div id="wizard-step-2" class="hidden space-y-5">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="font-semibold text-slate-200">Title *</label>
+              <span id="wizard-title-count" class="text-[11px] text-slate-500">0/200</span>
+            </div>
+            <input id="wizard-input-title" oninput="updateWizardTitleCount(this.value)" type="text" placeholder="Give your episode a name" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-950 border border-slate-800 text-white fidel focus:outline-none focus:border-brand-500">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="font-semibold text-slate-200">Description *</label>
+              <span id="wizard-desc-count" class="text-[11px] text-slate-500">0/4000</span>
+            </div>
+            <!-- Rich Text Quick Bar -->
+            <div class="flex gap-2 p-1.5 bg-surface-950 rounded-t-xl border border-slate-800 border-b-0 text-slate-400 text-xs">
+              <button onclick="appendFormat('**')" class="px-2 py-0.5 hover:text-white font-bold">B</button>
+              <button onclick="appendFormat('*')" class="px-2 py-0.5 hover:text-white italic">I</button>
+              <button onclick="appendFormat('__')" class="px-2 py-0.5 hover:text-white underline">U</button>
+              <button onclick="appendFormat('\n• ')" class="px-2 py-0.5 hover:text-white">List</button>
+            </div>
+            <textarea id="wizard-input-desc" oninput="updateWizardDescCount(this.value)" rows="4" placeholder="What else do you want your audience to know?" class="w-full px-3.5 py-2 rounded-b-xl bg-surface-950 border border-slate-800 text-white fidel focus:outline-none focus:border-brand-500"></textarea>
+          </div>
+
+          <!-- Episode Art & Mini Player Preview -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-lg bg-black border border-slate-700 flex items-center justify-center text-amber-400 font-bold text-xs">
+                TBF
+              </div>
+              <div>
+                <span class="font-semibold text-white block">Episode artwork</span>
+                <button onclick="alert('Cover art set to default TBF Podcast badge.')" class="text-brand-400 hover:underline text-[11px]">Change Artwork</button>
+              </div>
+            </div>
+
+            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex items-center justify-between">
+              <div>
+                <span class="font-semibold text-white block">Episode type</span>
+                <span class="text-slate-400 text-[11px]">Full length release</span>
+              </div>
+              <select id="wizard-select-type" class="px-2 py-1 rounded bg-surface-900 border border-slate-700 text-slate-200">
+                <option value="Full">Full</option>
+                <option value="Trailer">Trailer</option>
+                <option value="Bonus">Bonus</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Content Checks -->
+          <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 space-y-2">
+            <span class="font-bold text-slate-300 uppercase tracking-wider text-[11px]">Content checks</span>
+            <label class="flex items-center justify-between">
+              <span class="text-slate-300">Explicit content</span>
+              <input type="checkbox" id="wizard-explicit" class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
+            </label>
+            <label class="flex items-center justify-between">
+              <span class="text-slate-300">Promotional content or sponsorships</span>
+              <input type="checkbox" id="wizard-promo" class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 3: REVIEW & PUBLISH -->
+        <div id="wizard-step-3" class="hidden space-y-5">
+          <div class="p-4 bg-surface-950 rounded-xl border border-slate-800 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-xl bg-black border border-slate-700 flex items-center justify-center text-amber-400 font-bold text-sm">
+              TBF
+            </div>
+            <div class="min-w-0 flex-1">
+              <h4 id="review-title" class="font-bold text-white text-sm fidel truncate">Test Episode</h4>
+              <p id="review-desc" class="text-slate-400 text-xs fidel truncate mt-0.5">Show notes preview</p>
+              <div class="flex items-center gap-2 mt-1 text-[11px] text-brand-400">
+                <span>Audio attached</span>
+                <span>•</span>
+                <span id="review-duration">45:00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <label class="font-bold text-white block">Schedule Release</label>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-slate-300">
+                <input type="radio" name="publish-time" value="now" checked class="text-brand-600"> Publish immediately
+              </label>
+              <label class="flex items-center gap-2 text-slate-300">
+                <input type="radio" name="publish-time" value="schedule" class="text-brand-600"> Schedule for a future date
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wizard Footer Navigation -->
+      <div class="px-6 py-4 border-t border-slate-800 bg-surface-950 flex items-center justify-between">
+        <button id="wizard-back-btn" onclick="wizardBack()" class="px-4 py-2 rounded-xl text-slate-400 hover:text-white transition">Back</button>
+        <button id="wizard-next-btn" onclick="wizardNext()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold shadow transition">Next: Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SAVE DRAFT EXIT PROMPT MODAL ==================== -->
+  <div id="modal-draft-prompt" class="fixed inset-0 z-60 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-sm w-full p-5 shadow-2xl space-y-4">
+      <div>
+        <h4 class="font-bold text-white text-sm">Save draft?</h4>
+        <p class="text-xs text-slate-400 mt-1">If you exit now, your episode will be saved as a draft in your catalog.</p>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="keepEditingWizard()" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-surface-800 hover:bg-slate-700">Keep editing</button>
+        <button onclick="saveAndExitDraft()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white">Save draft</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== EPISODE DETAIL & NOTES MODAL ==================== -->
   <div id="modal-notes" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
@@ -278,9 +554,7 @@
           <span id="modal-date" class="text-[11px] font-semibold text-brand-400 uppercase tracking-wider">Date</span>
           <h3 id="modal-title" class="text-base sm:text-lg font-bold text-white mt-0.5 fidel">Episode Title</h3>
         </div>
-        <button onclick="closeNotesModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
+        <button onclick="closeNotesModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
       </div>
 
       <div class="p-5 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-300 flex-1">
@@ -295,12 +569,7 @@
             <input id="comment-input" type="text" placeholder="Add a comment..." class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-brand-500">
             <button onclick="addComment()" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs rounded-lg transition">Post</button>
           </div>
-          <div id="comments-list" class="space-y-2 text-xs">
-            <div class="p-2.5 rounded-lg bg-surface-950 border border-slate-800/60">
-              <span class="font-semibold text-slate-300">Listener:</span>
-              <span class="text-slate-400 ml-1">ጠቃሚ እና ወቅታዊ ውይይት ነው፣ በርቱ!</span>
-            </div>
-          </div>
+          <div id="comments-list" class="space-y-2 text-xs"></div>
         </div>
       </div>
 
@@ -317,7 +586,6 @@
   <footer class="fixed bottom-0 inset-x-0 z-40 bg-surface-900/95 backdrop-blur-lg border-t border-slate-800 px-4 py-3 shadow-2xl">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
       
-      <!-- Current Episode Info & Status -->
       <div class="flex items-center gap-3 w-full sm:w-1/3 min-w-0">
         <div id="player-art" class="w-11 h-11 rounded-lg bg-surface-950 border border-slate-700 shrink-0 flex items-center justify-center font-bold text-amber-500 text-[10px]">
           TBF
@@ -331,7 +599,6 @@
         </div>
       </div>
 
-      <!-- Playback Controls & Progress Bar -->
       <div class="flex flex-col items-center gap-1 w-full sm:w-1/2">
         <div class="flex items-center gap-4">
           <button onclick="seekRelative(-15)" class="text-slate-400 hover:text-white transition p-1" title="Rewind 15s">
@@ -355,25 +622,38 @@
         </div>
       </div>
 
-      <!-- Playback Speed -->
       <div class="hidden sm:flex items-center justify-end gap-2 w-1/3 text-xs">
         <button id="btn-speed" onclick="cycleSpeed()" class="px-2.5 py-1 rounded bg-surface-950 border border-slate-800 text-slate-300 font-mono text-xs hover:border-slate-700">1.0x</button>
       </div>
     </div>
   </footer>
 
-  <!-- HTML5 AUDIO ENGINE -->
   <audio id="audio-engine" preload="auto" crossorigin="anonymous"></audio>
 
-  <!-- JAVASCRIPT APP LOGIC -->
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
-    // Bulletproof universal MP3 audio links
-    let episodes = [
+    // Saved Settings Store
+    const DEFAULT_SETTINGS = {
+      showName: "TBF",
+      creatorName: "THE BITEW FOUNDATION",
+      description: "To address, whenever possible, other issues affecting human life such as health care, economic development, human rights, environment, socio-economic aspects and women’s issues.\n\nበአምባገነን መንግስት ሥር የሚኖሩ ዜጎች በሰብዓዊና ቁሳዊ እጦት እንዳይፈናቀሉ፤ ፍትህ እና እኩልነት እንዲሰፍን የሚተጋ የድምፅ መድረክ።",
+      category: "Arts",
+      language: "Amharic",
+      explicit: false,
+      spotifyUrl: "https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh",
+      rssEmail: "btisase@yahoo.com"
+    };
+
+    let showSettings = JSON.parse(localStorage.getItem('bitew_podcast_settings')) || DEFAULT_SETTINGS;
+
+    // Episodes Store with localStorage persistence
+    const INITIAL_EPISODES = [
       {
         id: "1",
         title: "የአማራ ፋኖ ህዝባዊ ድርጅት (አፋህድ) የፖለቲካ ፕሮግራም ሰነድ (ማኒፌስቶ)",
         date: "Feb 04, 2025",
         duration: "01:53:14",
+        status: "Published",
         plays: 168,
         desc: "የአማራ ፋኖ ህዝባዊ ድርጅት (አፋህድ) የፖለቲካ ፕሮግራም ሰነድ ማብራሪያ። ፍትህ፣ ዴሞክራሲያዊ ስርዓት ግንባታ እና የህዝባችን ሁለንተናዊ መብቶች የተመለከቱ ነጥቦች።",
         audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
@@ -383,6 +663,7 @@
         title: "የአማራው ትግል በስኬት እንዲጠናቀቅ ምን ያስፈልጋል?",
         date: "Feb 29, 2024",
         duration: "01:10:10",
+        status: "Published",
         plays: 98,
         desc: "ስለ ህዝባችን ወቅታዊ የህልውና ትግል ሂደት፣ የትብብር አስፈላጊነት እና የተደራጀ አሰራርን በተመለከተ የተደረገ ዝርዝር ውይይት።",
         audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
@@ -392,14 +673,21 @@
         title: "ወቅታዊ የህዝቦቻችን አንድነት እና ተግዳሮቶች",
         date: "Jan 31, 2024",
         duration: "01:18:19",
+        status: "Published",
         plays: 68,
         desc: "በወቅታዊ ሁኔታዎች ዙሪያ የተሰጡ ሀተታዎች እና የወደፊት አቅጣጫዎች ትንታኔ።",
         audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
       }
     ];
 
+    let episodes = JSON.parse(localStorage.getItem('bitew_podcast_episodes')) || INITIAL_EPISODES;
+
+    // Audio & State Variables
     let currentEpisode = null;
-    let localUploadedAudioUrl = null;
+    let wizardCurrentStep = 1;
+    let wizardAudioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+    let wizardAudioName = "";
+
     const audio = document.getElementById('audio-engine');
     const playIcon = document.getElementById('play-icon');
     const pauseIcon = document.getElementById('pause-icon');
@@ -414,7 +702,69 @@
     const speeds = [1.0, 1.25, 1.5, 2.0];
     let speedIdx = 0;
 
-    // View Routing
+    // Apply Settings to UI
+    function applySettingsToUI() {
+      document.getElementById('nav-show-name').textContent = showSettings.showName || "Bitew Podcast";
+      document.getElementById('nav-creator-name').textContent = `BY ${showSettings.creatorName || "THE BITEW FOUNDATION"}`;
+      document.getElementById('hero-title').textContent = showSettings.showName;
+      document.getElementById('hero-creator').textContent = `By ${showSettings.creatorName}`;
+      document.getElementById('hero-category-tag').textContent = showSettings.category;
+      
+      const descParts = showSettings.description.split('\n\n');
+      document.getElementById('hero-desc-en').textContent = descParts[0] || showSettings.description;
+      if (descParts[1]) {
+        document.getElementById('hero-desc-am').textContent = descParts[1];
+        document.getElementById('hero-desc-am').classList.remove('hidden');
+      } else {
+        document.getElementById('hero-desc-am').classList.add('hidden');
+      }
+
+      // Populate Settings inputs
+      document.getElementById('input-show-name').value = showSettings.showName;
+      document.getElementById('input-creator-name').value = showSettings.creatorName;
+      document.getElementById('input-description').value = showSettings.description;
+      document.getElementById('select-category').value = showSettings.category;
+      document.getElementById('select-language').value = showSettings.language;
+      document.getElementById('toggle-explicit').checked = showSettings.explicit;
+      document.getElementById('input-spotify-url').value = showSettings.spotifyUrl;
+      document.getElementById('input-rss-email').value = showSettings.rssEmail;
+
+      updateCharCount('name', showSettings.showName, 100);
+      updateCharCount('creator', showSettings.creatorName, 80);
+      updateCharCount('desc', showSettings.description, 600);
+    }
+
+    function saveAllSettings() {
+      showSettings = {
+        showName: document.getElementById('input-show-name').value,
+        creatorName: document.getElementById('input-creator-name').value,
+        description: document.getElementById('input-description').value,
+        category: document.getElementById('select-category').value,
+        language: document.getElementById('select-language').value,
+        explicit: document.getElementById('toggle-explicit').checked,
+        spotifyUrl: document.getElementById('input-spotify-url').value,
+        rssEmail: document.getElementById('input-rss-email').value
+      };
+      localStorage.setItem('bitew_podcast_settings', JSON.stringify(showSettings));
+      applySettingsToUI();
+      alert('Show Settings & Availability successfully saved!');
+    }
+
+    function updateCharCount(field, val, max) {
+      document.getElementById(`char-count-${field}`).textContent = `${val.length}/${max}`;
+    }
+
+    // Settings Sub-tab Switcher
+    function switchSettingsSubtab(sub) {
+      ['details', 'comments', 'availability', 'discovery'].forEach(s => {
+        document.getElementById(`subtab-content-${s}`).classList.add('hidden');
+        document.getElementById(`subtab-btn-${s}`).className = "pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200";
+      });
+      document.getElementById(`subtab-content-${sub}`).classList.remove('hidden');
+      document.getElementById(`subtab-btn-${sub}`).className = "pb-2 border-b-2 border-brand-500 text-white font-semibold";
+    }
+
+    // View Switching
     function toggleView(view) {
       if (view === 'creator') {
         document.getElementById('view-public').classList.add('hidden');
@@ -427,7 +777,7 @@
     }
 
     function switchAdminTab(tab) {
-      ['episodes', 'new', 'settings'].forEach(t => {
+      ['episodes', 'settings'].forEach(t => {
         document.getElementById(`admin-tab-${t}`).classList.add('hidden');
         document.getElementById(`tab-btn-${t}`).className = "pb-2.5 px-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200";
       });
@@ -435,7 +785,7 @@
       document.getElementById(`tab-btn-${tab}`).className = "pb-2.5 px-3 border-b-2 border-brand-500 text-white font-semibold";
     }
 
-    // Render Public Cards
+    // Public Episodes Renderer
     function renderEpisodes(list = episodes) {
       const container = document.getElementById('episodes-container');
       document.getElementById('episode-count').textContent = `${list.length} Episodes available`;
@@ -457,6 +807,8 @@
                 <span>${ep.date}</span>
                 <span>•</span>
                 <span>${ep.duration}</span>
+                <span>•</span>
+                <span class="text-emerald-400">${ep.status}</span>
               </div>
               <h3 class="text-xs sm:text-sm font-semibold text-slate-100 group-hover:text-brand-300 transition truncate fidel">
                 ${ep.title}
@@ -474,7 +826,7 @@
       });
     }
 
-    // Audio Playback with Resilient Fallbacks
+    // Audio Playback
     function playEpisode(id) {
       const ep = episodes.find(e => e.id === id);
       if (!ep) return;
@@ -486,79 +838,15 @@
 
       currentEpisode = ep;
       playerTitle.textContent = ep.title;
-      playerSubtitle.textContent = `TBF Podcast • ${ep.duration}`;
+      playerSubtitle.textContent = `${showSettings.showName} • ${ep.duration}`;
       playerStatusTag.classList.remove('hidden');
-      playerStatusTag.textContent = "Loading...";
+      playerStatusTag.textContent = "Playing";
 
-      // Clear previous error handlers
-      audio.onerror = null;
       audio.src = ep.audioUrl;
       audio.load();
-
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          playerStatusTag.textContent = "Playing";
-          updatePlayerUI();
-          renderEpisodes();
-        }).catch(err => {
-          console.warn("Standard audio load failed, activating AudioContext tone synth:", err);
-          playerStatusTag.textContent = "Online Stream";
-          startFallbackAudioTone();
-          updatePlayerUI();
-          renderEpisodes();
-        });
-      }
-
-      // If remote URL is blocked by network or CORS
-      audio.onerror = function() {
-        console.warn("Audio error encountered on URL. Triggering audio generator fallback.");
-        playerStatusTag.textContent = "Sample Audio";
-        startFallbackAudioTone();
-        updatePlayerUI();
-      };
-    }
-
-    // Web Audio API Synthesizer (Zero network required, guarantees sound on any machine)
-    let audioCtx = null;
-    let osc = null;
-    let isSynthPlaying = false;
-
-    function startFallbackAudioTone() {
-      try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        if (osc) {
-          osc.stop();
-          osc.disconnect();
-        }
-        osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(220, audioCtx.currentTime); // Gentle A3 warm tone
-        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        isSynthPlaying = true;
-      } catch (e) {
-        console.error("Web Audio fallback error:", e);
-      }
-    }
-
-    function stopFallbackAudioTone() {
-      if (osc) {
-        try {
-          osc.stop();
-          osc.disconnect();
-          osc = null;
-        } catch (e) {}
-      }
-      isSynthPlaying = false;
+      audio.play().catch(e => console.log('Audio stream starting:', e));
+      updatePlayerUI();
+      renderEpisodes();
     }
 
     function togglePlay() {
@@ -566,20 +854,10 @@
         playEpisode(episodes[0].id);
         return;
       }
-
-      if (isSynthPlaying) {
-        stopFallbackAudioTone();
-        updatePlayerUI();
-        renderEpisodes();
-        return;
-      }
-
       if (audio.paused) {
-        const p = audio.play();
-        if (p) p.catch(() => startFallbackAudioTone());
+        audio.play();
       } else {
         audio.pause();
-        stopFallbackAudioTone();
       }
       updatePlayerUI();
       renderEpisodes();
@@ -590,13 +868,15 @@
     }
 
     function updatePlayerUI() {
-      const isPlaying = (!audio.paused && audio.currentTime > 0) || isSynthPlaying;
-      if (isPlaying) {
-        playIcon.classList.add('hidden');
-        pauseIcon.classList.remove('hidden');
-      } else {
+      if (!currentEpisode) return;
+      if (audio.paused) {
         playIcon.classList.remove('hidden');
         pauseIcon.classList.add('hidden');
+        playerStatusTag.classList.add('hidden');
+      } else {
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+        playerStatusTag.classList.remove('hidden');
       }
     }
 
@@ -667,116 +947,177 @@
       input.value = '';
     }
 
-    // Live Feed Fetcher with Multiple Proxies
-    async function fetchLiveRSS() {
-      const syncBtn = document.getElementById('sync-text');
-      syncBtn.textContent = "Syncing...";
-      const targetRss = encodeURIComponent("https://anchor.fm/s/6b532648/podcast/rss");
-      
-      const proxies = [
-        `https://api.allorigins.win/raw?url=${targetRss}`,
-        `https://api.codetabs.com/v1/proxy?quest=https://anchor.fm/s/6b532648/podcast/rss`
-      ];
+    // ==================== 3-STEP WIZARD LOGIC ====================
+    function openWizardStep(step) {
+      wizardCurrentStep = step;
+      document.getElementById('modal-wizard').classList.remove('hidden');
 
-      for (let proxyUrl of proxies) {
-        try {
-          const res = await fetch(proxyUrl);
-          const xmlText = await res.text();
-          const parser = new DOMParser();
-          const xml = parser.parseFromString(xmlText, "text/xml");
-          const items = xml.querySelectorAll("item");
-          
-          if (items && items.length > 0) {
-            const fetched = [];
-            items.forEach((item, idx) => {
-              const title = item.querySelector("title")?.textContent || "Untitled Episode";
-              const pubDate = item.querySelector("pubDate")?.textContent || "";
-              const description = item.querySelector("description")?.textContent || "";
-              const enclosure = item.querySelector("enclosure");
-              const audioUrl = enclosure ? enclosure.getAttribute("url") : "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-              const dateStr = pubDate ? new Date(pubDate).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) : "Recent";
-              
-              fetched.push({
-                id: `rss-${idx}`,
-                title: title,
-                date: dateStr,
-                duration: "Audio",
-                plays: Math.floor(Math.random() * 90) + 15,
-                desc: description.replace(/<[^>]*>?/gm, '').slice(0, 300) + '...',
-                audioUrl: audioUrl
-              });
-            });
-            episodes = fetched;
-            renderEpisodes();
-            renderAdminTable();
-            syncBtn.textContent = `Synced (${items.length})`;
-            alert(`Feed Synced successfully! Loaded ${items.length} live episodes.`);
-            return;
-          }
-        } catch (e) {
-          console.warn("Proxy attempt failed:", e);
-        }
+      [1, 2, 3].forEach(s => {
+        document.getElementById(`wizard-step-${s}`).classList.add('hidden');
+        document.getElementById(`step-crumb-${s}`).className = "text-slate-500";
+      });
+
+      document.getElementById(`wizard-step-${step}`).classList.remove('hidden');
+      document.getElementById(`step-crumb-${step}`).className = "text-brand-400 font-bold";
+
+      const backBtn = document.getElementById('wizard-back-btn');
+      const nextBtn = document.getElementById('wizard-next-btn');
+
+      if (step === 1) {
+        backBtn.classList.add('invisible');
+        nextBtn.textContent = "Next: Details ›";
+      } else if (step === 2) {
+        backBtn.classList.remove('invisible');
+        nextBtn.textContent = "Next: Review ›";
+      } else if (step === 3) {
+        backBtn.classList.remove('invisible');
+        nextBtn.textContent = "Publish Episode";
+        // populate review
+        document.getElementById('review-title').textContent = document.getElementById('wizard-input-title').value || "Untitled Episode";
+        document.getElementById('review-desc').textContent = document.getElementById('wizard-input-desc').value || "No show notes.";
       }
-
-      syncBtn.textContent = "Feed Active";
-      alert("Local security prevents direct external XML fetch on file:///. Real episodes and playback are active!");
     }
 
-    // Local Audio File Picker
-    function handleLocalFileSelected(event) {
+    function wizardNext() {
+      if (wizardCurrentStep === 1) {
+        openWizardStep(2);
+      } else if (wizardCurrentStep === 2) {
+        const title = document.getElementById('wizard-input-title').value.trim();
+        if (!title) {
+          alert('Please enter an episode title.');
+          return;
+        }
+        openWizardStep(3);
+      } else if (wizardCurrentStep === 3) {
+        finishAndPublishWizard();
+      }
+    }
+
+    function wizardBack() {
+      if (wizardCurrentStep > 1) {
+        openWizardStep(wizardCurrentStep - 1);
+      }
+    }
+
+    function requestCloseWizard() {
+      document.getElementById('modal-draft-prompt').classList.remove('hidden');
+    }
+
+    function keepEditingWizard() {
+      document.getElementById('modal-draft-prompt').classList.add('hidden');
+    }
+
+    function saveAndExitDraft() {
+      document.getElementById('modal-draft-prompt').classList.add('hidden');
+      const title = document.getElementById('wizard-input-title').value.trim() || "Untitled Draft";
+      const desc = document.getElementById('wizard-input-desc').value || "";
+      
+      const draftEp = {
+        id: `ep-${Date.now()}`,
+        title: title,
+        date: "Draft",
+        duration: "00:00",
+        status: "Draft",
+        plays: 0,
+        desc: desc,
+        audioUrl: wizardAudioUrl
+      };
+
+      episodes.unshift(draftEp);
+      persistEpisodes();
+      document.getElementById('modal-wizard').classList.add('hidden');
+      renderAdminTable();
+      renderEpisodes();
+      alert('Saved as draft in your catalog.');
+    }
+
+    function finishAndPublishWizard() {
+      const title = document.getElementById('wizard-input-title').value.trim();
+      const desc = document.getElementById('wizard-input-desc').value;
+      const isSchedule = document.querySelector('input[name="publish-time"]:checked').value === 'schedule';
+
+      const newEp = {
+        id: `ep-${Date.now()}`,
+        title: title,
+        date: isSchedule ? "Scheduled" : new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+        duration: "45:00",
+        status: isSchedule ? "Scheduled" : "Published",
+        plays: 0,
+        desc: desc,
+        audioUrl: wizardAudioUrl
+      };
+
+      episodes.unshift(newEp);
+      persistEpisodes();
+      document.getElementById('modal-wizard').classList.add('hidden');
+      renderAdminTable();
+      renderEpisodes();
+      alert(`Episode "${title}" successfully published!`);
+    }
+
+    function handleWizardFilePick(event) {
       const file = event.target.files[0];
       if (file) {
-        localUploadedAudioUrl = URL.createObjectURL(file);
-        document.getElementById('upload-status-text').textContent = `Loaded: ${file.name}`;
+        wizardAudioUrl = URL.createObjectURL(file);
+        wizardAudioName = file.name;
+        document.getElementById('wizard-upload-status').textContent = `Loaded: ${file.name}`;
       }
     }
 
-    // Creator Studio Table & Form
+    function updateWizardTitleCount(val) {
+      document.getElementById('wizard-title-count').textContent = `${val.length}/200`;
+    }
+
+    function updateWizardDescCount(val) {
+      document.getElementById('wizard-desc-count').textContent = `${val.length}/4000`;
+    }
+
+    function appendFormat(tag) {
+      const desc = document.getElementById('wizard-input-desc');
+      desc.value += tag;
+      desc.focus();
+    }
+
+    function persistEpisodes() {
+      localStorage.setItem('bitew_podcast_episodes', JSON.stringify(episodes));
+    }
+
+    // Admin Table Renderer
     function renderAdminTable() {
       const table = document.getElementById('admin-episodes-table');
       table.innerHTML = '';
       episodes.forEach(ep => {
         const row = document.createElement('tr');
         row.className = "hover:bg-surface-800/40 transition";
+        const statusBadge = ep.status === 'Draft' 
+          ? `<span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/30">Draft</span>`
+          : `<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">${ep.status}</span>`;
+
         row.innerHTML = `
           <td class="py-3 px-4 max-w-xs truncate text-white fidel">${ep.title}</td>
-          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Published</span></td>
+          <td class="py-3 px-4">${statusBadge}</td>
           <td class="py-3 px-4 text-slate-400">${ep.date}</td>
+          <td class="py-3 px-4 text-slate-400">Audio</td>
           <td class="py-3 px-4 text-slate-400">${ep.duration}</td>
           <td class="py-3 px-4 font-mono text-slate-300">${ep.plays || 0}</td>
           <td class="py-3 px-4 text-right">
             <button onclick="playEpisode('${ep.id}')" class="text-brand-400 hover:underline mr-2">Play</button>
-            <button onclick="openNotesModal('${ep.id}')" class="text-slate-400 hover:text-white">Notes</button>
+            <button onclick="openNotesModal('${ep.id}')" class="text-slate-400 hover:text-white">Edit</button>
           </td>
         `;
         table.appendChild(row);
       });
     }
 
-    function handleCreateEpisode(e) {
-      e.preventDefault();
-      const title = document.getElementById('new-ep-title').value;
-      const duration = document.getElementById('new-ep-duration').value || "45:00";
-      const desc = document.getElementById('new-ep-desc').value || "No show notes provided.";
-      
-      const newEp = {
-        id: `ep-${Date.now()}`,
-        title: title,
-        date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-        duration: duration,
-        plays: 0,
-        desc: desc,
-        audioUrl: localUploadedAudioUrl || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-      };
-
-      episodes.unshift(newEp);
-      renderEpisodes();
-      renderAdminTable();
-      switchAdminTab('episodes');
-      alert(`Episode "${title}" published successfully!`);
+    function copyRssFromInput() {
+      const copyText = document.getElementById("rss-feed-input");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText.value);
+      alert("RSS Feed URL copied to clipboard!");
     }
 
-    // Search
+    // Live Search
     function handleSearch() {
       const q = document.getElementById('search-input').value.toLowerCase();
       const filtered = episodes.filter(e => 
@@ -785,8 +1126,9 @@
       renderEpisodes(filtered);
     }
 
-    // Init
+    // Initialize on Load
     window.addEventListener('DOMContentLoaded', () => {
+      applySettingsToUI();
       renderEpisodes();
     });
   </script>
