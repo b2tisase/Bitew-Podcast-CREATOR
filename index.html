@@ -375,7 +375,7 @@
   <div id="modal-wizard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6" style="display: none;">
     <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden relative">
       
-      <!-- Wizard Top Header with Explicit Close Action -->
+      <!-- Header -->
       <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-surface-900 shrink-0">
         <div>
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Create episode</span>
@@ -395,12 +395,11 @@
         </button>
       </div>
 
-      <!-- Wizard Body -->
+      <!-- Body -->
       <div class="p-6 overflow-y-auto flex-1 space-y-6 text-xs text-slate-300">
         
-        <!-- STEP 1: MULTI-FILE UPLOAD + LIVE VOICE RECORDER -->
+        <!-- STEP 1: UPLOAD & LIVE RECORDER -->
         <div id="wizard-step-1" class="space-y-5">
-          
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- File Selector Area -->
             <div class="text-center py-6 border-2 border-dashed border-slate-700 hover:border-brand-500 rounded-2xl bg-surface-950 p-5 relative cursor-pointer transition">
@@ -465,6 +464,7 @@
 
         <!-- STEP 2: DETAILS -->
         <div id="wizard-step-2" class="hidden space-y-5">
+          <input type="hidden" id="editing-episode-id" value="">
           <div>
             <div class="flex justify-between items-center mb-1">
               <label class="font-semibold text-slate-200">Title *</label>
@@ -680,11 +680,9 @@
     let wizardCurrentStep = 1;
     let activeStatusFilter = 'all';
 
-    // Multi-track audio queue
     let uploadedTracks = [];
     const MAX_DURATION_SECONDS = 180 * 60; // 3 hours limit
 
-    // Live Voice Recorder state
     let mediaRecorder = null;
     let recordedChunks = [];
     let recordInterval = null;
@@ -997,7 +995,7 @@
           }, 1000);
 
         } catch (err) {
-          alert('Microphone access denied or unavailable: ' + err.message);
+          alert('Microphone access denied: ' + err.message);
         }
       } else {
         if (mediaRecorder && mediaRecorder.state !== 'inactive') {
@@ -1120,12 +1118,25 @@
       renderUploadedTracks();
     }
 
-    // ==================== WIZARD LOGIC & FORCE CLOSE ====================
-    function openWizardStep(step) {
+    // ==================== WIZARD & STATUS CONTROLS ====================
+    function openWizardStep(step, existingEpId = null) {
       wizardCurrentStep = step;
       const wizardModal = document.getElementById('modal-wizard');
       wizardModal.style.display = 'flex';
       wizardModal.classList.remove('hidden');
+
+      if (existingEpId) {
+        const ep = episodes.find(e => e.id === existingEpId);
+        if (ep) {
+          document.getElementById('editing-episode-id').value = ep.id;
+          document.getElementById('wizard-input-title').value = ep.title;
+          document.getElementById('wizard-input-desc').value = ep.desc;
+          updateWizardTitleCount(ep.title);
+          updateWizardDescCount(ep.desc);
+        }
+      } else {
+        document.getElementById('editing-episode-id').value = '';
+      }
 
       [1, 2, 3].forEach(s => {
         document.getElementById(`wizard-step-${s}`).classList.add('hidden');
@@ -1161,13 +1172,13 @@
       const wizardModal = document.getElementById('modal-wizard');
       wizardModal.style.display = 'none';
       wizardModal.classList.add('hidden');
+      document.getElementById('editing-episode-id').value = '';
     }
 
     function toggleSchedulePicker(isSchedule) {
       const box = document.getElementById('schedule-picker-box');
       if (isSchedule) {
         box.classList.remove('hidden');
-        // set default to tomorrow
         const tomorrow = new Date(Date.now() + 86400000);
         document.getElementById('schedule-datetime').value = tomorrow.toISOString().slice(0, 16);
       } else {
@@ -1177,7 +1188,8 @@
 
     function wizardNext() {
       if (wizardCurrentStep === 1) {
-        if (!uploadedTracks.length) {
+        const editId = document.getElementById('editing-episode-id').value;
+        if (!uploadedTracks.length && !editId) {
           alert('Please upload or record at least one audio track to proceed.');
           return;
         }
@@ -1204,31 +1216,46 @@
     }
 
     function saveAsDraftDirectly() {
+      const editId = document.getElementById('editing-episode-id').value;
       const title = document.getElementById('wizard-input-title').value.trim() || "Untitled Draft";
       const desc = document.getElementById('wizard-input-desc').value || "";
       const primaryUrl = uploadedTracks.length ? uploadedTracks[0].url : "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
       const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0);
 
-      const draftEp = {
-        id: `ep-${Date.now()}`,
-        title: title,
-        date: "Draft",
-        duration: formatTime(totalSec) || "00:00",
-        status: "Draft",
-        plays: 0,
-        desc: desc,
-        audioUrl: primaryUrl
-      };
+      if (editId) {
+        const idx = episodes.findIndex(e => e.id === editId);
+        if (idx !== -1) {
+          episodes[idx].title = title;
+          episodes[idx].desc = desc;
+          episodes[idx].status = "Draft";
+          if (uploadedTracks.length) {
+            episodes[idx].duration = formatTime(totalSec);
+            episodes[idx].audioUrl = primaryUrl;
+          }
+        }
+      } else {
+        const draftEp = {
+          id: `ep-${Date.now()}`,
+          title: title,
+          date: "Draft",
+          duration: formatTime(totalSec) || "00:00",
+          status: "Draft",
+          plays: 0,
+          desc: desc,
+          audioUrl: primaryUrl
+        };
+        episodes.unshift(draftEp);
+      }
 
-      episodes.unshift(draftEp);
       persistEpisodes();
       forceCloseWizard();
       renderAdminTable();
       renderEpisodes();
-      alert('Episode successfully saved as Draft!');
+      alert('Saved as Draft in your catalog.');
     }
 
     function finishAndPublishWizard() {
+      const editId = document.getElementById('editing-episode-id').value;
       const title = document.getElementById('wizard-input-title').value.trim();
       const desc = document.getElementById('wizard-input-desc').value;
       const isSchedule = document.querySelector('input[name="publish-time"]:checked').value === 'schedule';
@@ -1241,23 +1268,65 @@
         displayDate = new Date(scheduleTime).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
       }
 
-      const newEp = {
-        id: `ep-${Date.now()}`,
-        title: title,
-        date: displayDate,
-        duration: formatTime(totalSec),
-        status: isSchedule ? "Scheduled" : "Published",
-        plays: 0,
-        desc: desc,
-        audioUrl: primaryUrl
-      };
+      if (editId) {
+        const idx = episodes.findIndex(e => e.id === editId);
+        if (idx !== -1) {
+          episodes[idx].title = title;
+          episodes[idx].desc = desc;
+          episodes[idx].status = isSchedule ? "Scheduled" : "Published";
+          episodes[idx].date = displayDate;
+          if (uploadedTracks.length) {
+            episodes[idx].duration = formatTime(totalSec);
+            episodes[idx].audioUrl = primaryUrl;
+          }
+        }
+      } else {
+        const newEp = {
+          id: `ep-${Date.now()}`,
+          title: title,
+          date: displayDate,
+          duration: formatTime(totalSec),
+          status: isSchedule ? "Scheduled" : "Published",
+          plays: 0,
+          desc: desc,
+          audioUrl: primaryUrl
+        };
+        episodes.unshift(newEp);
+      }
 
-      episodes.unshift(newEp);
       persistEpisodes();
       forceCloseWizard();
       renderAdminTable();
       renderEpisodes();
       alert(`Episode "${title}" successfully ${isSchedule ? 'scheduled' : 'published'}!`);
+    }
+
+    // ==================== SPECIFIC UNPUBLISH / PUBLISH TOGGLE ====================
+    function unpublishEpisode(id) {
+      const ep = episodes.find(e => e.id === id);
+      if (!ep) return;
+      if (confirm(`Unpublish "${ep.title}"? This will revert it to a private Draft and hide it from the public listener feed.`)) {
+        ep.status = "Draft";
+        if (currentEpisode && currentEpisode.id === id) {
+          audio.pause();
+          currentEpisode = null;
+          updatePlayerUI();
+        }
+        persistEpisodes();
+        renderAdminTable();
+        renderEpisodes();
+      }
+    }
+
+    function publishEpisodeDirect(id) {
+      const ep = episodes.find(e => e.id === id);
+      if (!ep) return;
+      ep.status = "Published";
+      ep.date = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      persistEpisodes();
+      renderAdminTable();
+      renderEpisodes();
+      alert(`"${ep.title}" is now Published live!`);
     }
 
     function updateWizardTitleCount(val) {
@@ -1331,10 +1400,14 @@
         row.className = "hover:bg-surface-800/40 transition";
         
         let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Published</span>`;
+        let statusActionBtn = `<button onclick="unpublishEpisode('${ep.id}')" class="text-amber-400 hover:text-amber-300 hover:underline mr-2" title="Revert to Draft">Unpublish</button>`;
+
         if (ep.status === 'Draft') {
           statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/30">Draft</span>`;
+          statusActionBtn = `<button onclick="publishEpisodeDirect('${ep.id}')" class="text-emerald-400 hover:text-emerald-300 hover:underline mr-2" title="Publish Episode">Publish</button>`;
         } else if (ep.status === 'Scheduled') {
           statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] bg-purple-500/10 text-purple-400 border border-purple-500/30">Scheduled</span>`;
+          statusActionBtn = `<button onclick="publishEpisodeDirect('${ep.id}')" class="text-emerald-400 hover:text-emerald-300 hover:underline mr-2">Publish Now</button><button onclick="unpublishEpisode('${ep.id}')" class="text-amber-400 hover:underline mr-2">Draft</button>`;
         }
 
         row.innerHTML = `
@@ -1345,8 +1418,9 @@
           <td class="py-3 px-4 text-slate-400">${ep.duration}</td>
           <td class="py-3 px-4 font-mono text-slate-300">${ep.plays || 0}</td>
           <td class="py-3 px-4 text-right">
+            ${statusActionBtn}
             <button onclick="playEpisode('${ep.id}')" class="text-brand-400 hover:underline mr-2">Play</button>
-            <button onclick="openNotesModal('${ep.id}')" class="text-slate-400 hover:text-white mr-2">Notes</button>
+            <button onclick="openWizardStep(2, '${ep.id}')" class="text-slate-400 hover:text-white mr-2">Edit</button>
             <button onclick="deleteEpisodeById('${ep.id}')" class="text-red-400 hover:text-red-300 hover:underline">Delete</button>
           </td>
         `;
@@ -1370,7 +1444,6 @@
       renderEpisodes(filtered);
     }
 
-    // Escape Key Listener to Force Close Any Open Wizard
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         forceCloseWizard();
