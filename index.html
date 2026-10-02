@@ -113,7 +113,7 @@
             በአምባገነን መንግስት ሥር የሚኖሩ ዜጎች በሰብዓዊና ቁሳዊ እጦት እንዳይፈናቀሉ፤ ፍትህ እና እኩልነት እንዲሰፍን የሚተጋ የድምፅ መድረክ።
           </p>
 
-          <!-- Distribution Chips (All Available Platforms) -->
+          <!-- Distribution Chips -->
           <div class="flex items-center justify-center md:justify-start gap-2 pt-1 flex-wrap">
             <span class="text-xs text-slate-400 font-medium mr-1">Available on:</span>
             
@@ -206,9 +206,8 @@
       </div>
     </div>
 
-    <!-- TAB 2: DETAILED SHOW SETTINGS -->
+    <!-- TAB 2: SHOW SETTINGS -->
     <div id="admin-tab-settings" class="hidden bg-surface-900 border border-slate-800 rounded-xl p-6 space-y-6">
-      
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-xl bg-black border border-slate-700 flex items-center justify-center text-amber-400 text-xs font-bold">
@@ -229,7 +228,7 @@
         <button onclick="switchSettingsSubtab('discovery')" id="subtab-btn-discovery" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Discovery & Assets</button>
       </div>
 
-      <!-- SUBTAB A: DETAILS -->
+      <!-- DETAILS SUBTAB -->
       <div id="subtab-content-details" class="space-y-5 text-xs">
         <div>
           <div class="flex justify-between items-center mb-1">
@@ -272,154 +271,122 @@
             </select>
           </div>
         </div>
-
-        <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
-          <div>
-            <span class="font-semibold text-slate-200">Explicit content</span>
-            <p class="text-[11px] text-slate-500">Help fans of all ages avoid unwanted explicit content.</p>
-          </div>
-          <input type="checkbox" id="toggle-explicit" class="w-4 h-4 rounded bg-surface-950 border-slate-700 text-brand-600 focus:ring-0">
-        </div>
       </div>
 
-      <!-- SUBTAB B: COMMENTS -->
+      <!-- COMMENTS SUBTAB -->
       <div id="subtab-content-comments" class="hidden space-y-4 text-xs">
         <div class="flex items-center justify-between pb-3 border-b border-slate-800">
           <div>
             <span class="font-semibold text-white">Enable comments</span>
-            <p class="text-[11px] text-slate-400">Comments are on for your show. If turned off, all existing comments will be hidden.</p>
+            <p class="text-[11px] text-slate-400">Comments are on for your show.</p>
           </div>
-          <input type="checkbox" id="toggle-comments-active" checked class="w-4 h-4 rounded bg-surface-950 border-slate-700 text-brand-600 focus:ring-0">
-        </div>
-
-        <div class="space-y-2">
-          <label class="font-semibold text-slate-300">Moderation Filter</label>
-          <div class="space-y-1.5">
-            <label class="flex items-center gap-2 text-slate-300">
-              <input type="radio" name="moderation-level" value="low" class="text-brand-600"> Low: Don't hold any comments
-            </label>
-            <label class="flex items-center gap-2 text-slate-300">
-              <input type="radio" name="moderation-level" value="standard" checked class="text-brand-600"> Standard: Hold potentially inappropriate or sensitive comments
-            </label>
-            <label class="flex items-center gap-2 text-slate-300">
-              <input type="radio" name="moderation-level" value="high" class="text-brand-600"> High: Hold all comments for review
-            </label>
-          </div>
+          <input type="checkbox" id="toggle-comments-active" checked class="w-4 h-4 rounded bg-surface-950 border-slate-700 text-brand-600">
         </div>
       </div>
 
-      <!-- SUBTAB C: AVAILABILITY & MULTI-PLATFORM DISTRIBUTION -->
-      <div id="subtab-content-availability" class="hidden space-y-5 text-xs">
+      <!-- AVAILABILITY SUBTAB WITH DIRECT EXTERNAL SUBMISSION ACTIONS -->
+      <div id="subtab-content-availability" class="hidden space-y-6 text-xs">
         <div>
-          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-2">Connected Podcast Platforms</h4>
-          <p class="text-slate-400 mb-4">Edit direct URLs for all directories your podcast is distributed to:</p>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-1">Podcast Platforms & Submission Directory</h4>
+          <p class="text-slate-400 mb-4">Click "Submit Feed ↗" to register or verify your show's RSS feed directly on each network:</p>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="font-semibold text-emerald-400 block mb-1">Spotify Show Page</label>
-              <input id="input-spotify-url" type="text" value="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+          <div class="grid grid-cols-1 gap-3.5">
+            <!-- Spotify -->
+            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <div>
+                  <span class="font-bold text-white block">Spotify for Creators</span>
+                  <input id="input-spotify-url" type="text" value="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
+                </div>
+              </div>
+              <div class="flex items-center gap-2 self-end sm:self-center">
+                <a href="https://creators.spotify.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 font-semibold transition">Submit Feed ↗</a>
+              </div>
             </div>
 
-            <div>
-              <label class="font-semibold text-purple-400 block mb-1">Apple Podcasts Page</label>
-              <input id="input-apple-url" type="text" value="https://podcasts.apple.com/us/podcast/tbf/id1586071693" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+            <!-- Apple -->
+            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+                <div>
+                  <span class="font-bold text-white block">Apple Podcasts Connect</span>
+                  <input id="input-apple-url" type="text" value="https://podcasts.apple.com/us/podcast/tbf/id1586071693" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
+                </div>
+              </div>
+              <div class="flex items-center gap-2 self-end sm:self-center">
+                <a href="https://podcastsconnect.apple.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/30 hover:bg-purple-500/20 font-semibold transition">Submit Feed ↗</a>
+              </div>
             </div>
 
-            <div>
-              <label class="font-semibold text-cyan-400 block mb-1">Amazon Music Page</label>
-              <input id="input-amazon-url" type="text" value="https://music.amazon.com/podcasts" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+            <!-- Amazon -->
+            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+                <div>
+                  <span class="font-bold text-white block">Amazon Music for Podcasters</span>
+                  <input id="input-amazon-url" type="text" value="https://music.amazon.com/podcasts" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
+                </div>
+              </div>
+              <div class="flex items-center gap-2 self-end sm:self-center">
+                <a href="https://podcasters.amazon.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/20 font-semibold transition">Submit Feed ↗</a>
+              </div>
             </div>
 
-            <div>
-              <label class="font-semibold text-red-400 block mb-1">Pocket Casts Page</label>
-              <input id="input-pocketcasts-url" type="text" value="https://pca.st/itunes/1586071693" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
+            <!-- Pocket Casts -->
+            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                <div>
+                  <span class="font-bold text-white block">Pocket Casts</span>
+                  <input id="input-pocketcasts-url" type="text" value="https://pca.st/itunes/1586071693" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
+                </div>
+              </div>
+              <div class="flex items-center gap-2 self-end sm:self-center">
+                <a href="https://pocketcasts.com/submit" target="_blank" class="px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 border border-red-500/30 hover:bg-red-500/20 font-semibold transition">Submit Feed ↗</a>
+              </div>
             </div>
 
-            <div>
-              <label class="font-semibold text-rose-400 block mb-1">iHeartRadio Page</label>
-              <input id="input-iheart-url" type="text" value="https://www.iheart.com/podcast/" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono text-[11px]">
-            </div>
-
-            <div>
-              <label class="font-semibold text-amber-400 block mb-1">Master RSS Feed</label>
-              <input id="rss-feed-input" type="text" readonly value="https://anchor.fm/s/6b532648/podcast/rss" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-400 font-mono text-[11px]">
+            <!-- iHeart -->
+            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3 h-3 rounded-full bg-rose-600"></span>
+                <div>
+                  <span class="font-bold text-white block">iHeartPodcasts Network</span>
+                  <input id="input-iheart-url" type="text" value="https://www.iheart.com/podcast/" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
+                </div>
+              </div>
+              <div class="flex items-center gap-2 self-end sm:self-center">
+                <a href="https://podcasters.iheart.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/30 hover:bg-rose-500/20 font-semibold transition">Submit Feed ↗</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="space-y-3 pt-3 border-t border-slate-800">
-          <h4 class="font-bold text-white uppercase tracking-wider text-[11px]">RSS Feed Verification</h4>
-          <div>
-            <label class="text-slate-400 mb-1 block">Email in RSS feed</label>
-            <div class="flex gap-2">
-              <input id="input-rss-email" type="email" value="btisase@yahoo.com" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-200">
-              <button onclick="alert('RSS contact email verified!')" class="px-3 py-2 bg-surface-800 border border-slate-700 rounded-lg text-slate-300 hover:text-white">Update</button>
-            </div>
-          </div>
-
-          <div>
-            <label class="text-slate-400 mb-1 block">Apple Podcasts claim code</label>
-            <input type="text" placeholder="Enter your token from Apple Podcasts Connect" class="w-full px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-200">
-          </div>
-        </div>
-
-        <div class="pt-4 border-t border-slate-800">
-          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-2">Migration & Redirection</h4>
-          <label class="text-slate-400 block mb-1">Redirect your podcast (301 Permanent Redirect)</label>
+        <!-- Master RSS Box -->
+        <div class="p-4 bg-surface-950 rounded-xl border border-slate-800 space-y-2">
+          <span class="text-amber-400 font-bold block">Your Live RSS Feed Link</span>
           <div class="flex gap-2">
-            <input type="text" placeholder="https://www.newhost.com/podcastname/rss" class="flex-1 px-3 py-2 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 font-mono">
-            <button onclick="alert('301 Redirect scheduled.')" class="px-3 py-2 bg-purple-600/30 text-purple-300 border border-purple-500/40 rounded-lg hover:bg-purple-600/40">Redirect</button>
+            <input id="rss-feed-input" type="text" readonly value="https://anchor.fm/s/6b532648/podcast/rss" class="flex-1 px-3 py-2 rounded-lg bg-surface-900 border border-slate-700 text-slate-300 font-mono text-xs select-all">
+            <button onclick="copyRssFromInput()" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-lg transition">Copy Feed URL</button>
           </div>
         </div>
       </div>
 
-      <!-- SUBTAB D: DISCOVERY & ASSETS -->
+      <!-- DISCOVERY SUBTAB -->
       <div id="subtab-content-discovery" class="hidden space-y-5 text-xs">
-        <div>
-          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-1">Discovery</h4>
-          <p class="text-slate-400 mb-2">Set where new listeners begin discovering your episodes.</p>
-          <div class="p-3 bg-surface-950 rounded-lg border border-slate-800 flex items-center justify-between">
-            <span class="text-slate-200">✓ Set to latest episode as best place to start</span>
-            <button class="text-brand-400 hover:underline">Change</button>
-          </div>
-        </div>
-
-        <div class="pt-3 border-t border-slate-800 space-y-3">
-          <h4 class="font-bold text-white uppercase tracking-wider text-[11px]">Episode Assets</h4>
-          <div class="space-y-2">
-            <label class="flex items-center justify-between p-3 bg-surface-950 rounded-lg border border-slate-800">
-              <div>
-                <span class="text-slate-200 block font-medium">Auto-generate episode previews</span>
-                <span class="text-slate-500 text-[11px]">Creates short clips under 1 minute for social discovery</span>
-              </div>
-              <input type="checkbox" checked class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
-            </label>
-
-            <label class="flex items-center justify-between p-3 bg-surface-950 rounded-lg border border-slate-800">
-              <div>
-                <span class="text-slate-200 block font-medium">Distribute transcripts across other platforms via RSS</span>
-                <span class="text-slate-500 text-[11px]">Helps fans read along and improves accessibility</span>
-              </div>
-              <input type="checkbox" checked class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
-            </label>
-
-            <label class="flex items-center justify-between p-3 bg-surface-950 rounded-lg border border-slate-800">
-              <div>
-                <span class="text-slate-200 block font-medium">Create chapters automatically</span>
-                <span class="text-slate-500 text-[11px]">Extracts timestamp bookmarks from show notes</span>
-              </div>
-              <input type="checkbox" checked class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
-            </label>
-          </div>
+        <div class="p-3 bg-surface-950 rounded-lg border border-slate-800">
+          <span class="text-slate-200">✓ Set to latest episode as best place to start</span>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- ==================== 3-STEP EPISODE CREATOR WIZARD MODAL ==================== -->
+  <!-- ==================== EPISODE CREATOR WIZARD WITH MULTI-TRACK AUDIO QUEUE ==================== -->
   <div id="modal-wizard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6">
     <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
       
+      <!-- Wizard Top Header with Explicit Close Action -->
       <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
         <div>
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Create episode</span>
@@ -431,22 +398,54 @@
             <span id="step-crumb-3" class="text-slate-500">Review</span>
           </div>
         </div>
-        <button onclick="requestCloseWizard()" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+        <button type="button" onclick="requestCloseWizard()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-surface-800 transition" title="Close Wizard">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
       </div>
 
+      <!-- Wizard Body -->
       <div class="p-6 overflow-y-auto flex-1 space-y-6 text-xs text-slate-300">
         
-        <!-- STEP 1: UPLOAD -->
-        <div id="wizard-step-1" class="space-y-4">
-          <div class="text-center py-8 border-2 border-dashed border-slate-700 hover:border-brand-500 rounded-2xl bg-surface-950 p-6 relative cursor-pointer">
-            <input type="file" id="wizard-file-input" accept="audio/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="handleWizardFilePick(event)">
-            <svg class="w-12 h-12 mx-auto text-brand-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-            <h4 id="wizard-upload-status" class="text-sm font-bold text-white">Drag and drop audio or select file</h4>
-            <p class="text-slate-500 text-[11px] mt-1">Accepts MP3, M4A, WAV up to 250MB</p>
+        <!-- STEP 1: MULTI-FILE AUDIO UPLOAD & REORDERING -->
+        <div id="wizard-step-1" class="space-y-5">
+          
+          <!-- Drop Area (Accepts Multiple Files) -->
+          <div class="text-center py-7 border-2 border-dashed border-slate-700 hover:border-brand-500 rounded-2xl bg-surface-950 p-6 relative cursor-pointer transition">
+            <input type="file" id="wizard-file-input" accept="audio/*" multiple class="absolute inset-0 opacity-0 cursor-pointer" onchange="handleMultipleAudioUpload(event)">
+            <svg class="w-10 h-10 mx-auto text-brand-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+            <h4 class="text-sm font-bold text-white">Click or drag & drop one or multiple audio tracks</h4>
+            <p class="text-slate-500 text-[11px] mt-1">Select multiple tracks (e.g. Tsehay Yohannes 1–25) • MP3, WAV, M4A</p>
           </div>
-          <div class="p-4 bg-surface-950 rounded-xl border border-slate-800 flex items-center justify-between">
-            <span class="text-slate-400">Need to record an episode directly?</span>
-            <button onclick="alert('Connect external microphone or recorder.')" class="px-3 py-1.5 bg-surface-800 hover:bg-slate-700 rounded-lg text-slate-200">Record Live</button>
+
+          <!-- Capacity & Duration Status Gauge -->
+          <div class="p-4 bg-surface-950 rounded-xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-200">Episode Duration & Upload Allowance:</span>
+              <span id="queue-duration-badge" class="font-mono text-brand-400">00:00 / 03:00:00 Max</span>
+            </div>
+            
+            <div class="w-full h-2 bg-surface-900 rounded-full overflow-hidden border border-slate-800">
+              <div id="queue-progress-bar" class="h-full bg-brand-500 transition-all duration-300" style="width: 0%;"></div>
+            </div>
+
+            <!-- Warning Alert (Hidden by default) -->
+            <div id="duration-warning" class="hidden p-2.5 rounded-lg bg-red-950/50 border border-red-500/40 text-red-300 text-[11px] flex items-center gap-2">
+              <svg class="w-4 h-4 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              <span><strong>Duration Limit Exceeded!</strong> Total audio exceeds the maximum 180 minutes limit. Please remove or trim tracks.</span>
+            </div>
+          </div>
+
+          <!-- Uploaded Audio Tracks Sequence List -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-bold text-white text-xs">Audio Track Sequence (<span id="track-count">0</span> segments):</span>
+              <span class="text-[11px] text-slate-500">Reorder sequence using ▲ / ▼</span>
+            </div>
+            <div id="audio-tracks-queue" class="space-y-2 max-h-56 overflow-y-auto pr-1">
+              <div class="p-4 text-center text-slate-500 bg-surface-950 rounded-xl border border-slate-800/80">
+                No audio tracks uploaded yet. Select files above to queue.
+              </div>
+            </div>
           </div>
         </div>
 
@@ -462,40 +461,10 @@
 
           <div>
             <div class="flex justify-between items-center mb-1">
-              <label class="font-semibold text-slate-200">Description *</label>
+              <label class="font-semibold text-slate-200">Description / Show Notes *</label>
               <span id="wizard-desc-count" class="text-[11px] text-slate-500">0/4000</span>
             </div>
-            <div class="flex gap-2 p-1.5 bg-surface-950 rounded-t-xl border border-slate-800 border-b-0 text-slate-400 text-xs">
-              <button onclick="appendFormat('**')" class="px-2 py-0.5 hover:text-white font-bold">B</button>
-              <button onclick="appendFormat('*')" class="px-2 py-0.5 hover:text-white italic">I</button>
-              <button onclick="appendFormat('__')" class="px-2 py-0.5 hover:text-white underline">U</button>
-              <button onclick="appendFormat('\n• ')" class="px-2 py-0.5 hover:text-white">List</button>
-            </div>
-            <textarea id="wizard-input-desc" oninput="updateWizardDescCount(this.value)" rows="4" placeholder="What else do you want your audience to know?" class="w-full px-3.5 py-2 rounded-b-xl bg-surface-950 border border-slate-800 text-white fidel focus:outline-none focus:border-brand-500"></textarea>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex items-center gap-3">
-              <div class="w-12 h-12 rounded-lg bg-black border border-slate-700 flex items-center justify-center text-amber-400 font-bold text-xs">
-                TBF
-              </div>
-              <div>
-                <span class="font-semibold text-white block">Episode artwork</span>
-                <button onclick="alert('Cover art set to default TBF Podcast badge.')" class="text-brand-400 hover:underline text-[11px]">Change Artwork</button>
-              </div>
-            </div>
-
-            <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex items-center justify-between">
-              <div>
-                <span class="font-semibold text-white block">Episode type</span>
-                <span class="text-slate-400 text-[11px]">Full length release</span>
-              </div>
-              <select id="wizard-select-type" class="px-2 py-1 rounded bg-surface-900 border border-slate-700 text-slate-200">
-                <option value="Full">Full</option>
-                <option value="Trailer">Trailer</option>
-                <option value="Bonus">Bonus</option>
-              </select>
-            </div>
+            <textarea id="wizard-input-desc" oninput="updateWizardDescCount(this.value)" rows="4" placeholder="What else do you want your audience to know?" class="w-full px-3.5 py-2 rounded-xl bg-surface-950 border border-slate-800 text-white fidel focus:outline-none focus:border-brand-500"></textarea>
           </div>
 
           <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 space-y-2">
@@ -503,10 +472,6 @@
             <label class="flex items-center justify-between">
               <span class="text-slate-300">Explicit content</span>
               <input type="checkbox" id="wizard-explicit" class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
-            </label>
-            <label class="flex items-center justify-between">
-              <span class="text-slate-300">Promotional content or sponsorships</span>
-              <input type="checkbox" id="wizard-promo" class="w-4 h-4 rounded text-brand-600 bg-surface-900 border-slate-700">
             </label>
           </div>
         </div>
@@ -521,18 +486,18 @@
               <h4 id="review-title" class="font-bold text-white text-sm fidel truncate">Test Episode</h4>
               <p id="review-desc" class="text-slate-400 text-xs fidel truncate mt-0.5">Show notes preview</p>
               <div class="flex items-center gap-2 mt-1 text-[11px] text-brand-400">
-                <span>Audio attached</span>
+                <span id="review-tracks-count">1 Track</span>
                 <span>•</span>
-                <span id="review-duration">45:00</span>
+                <span id="review-duration">00:00</span>
               </div>
             </div>
           </div>
 
           <div class="space-y-3">
-            <label class="font-bold text-white block">Schedule Release</label>
+            <label class="font-bold text-white block">Publishing schedule</label>
             <div class="space-y-2">
               <label class="flex items-center gap-2 text-slate-300">
-                <input type="radio" name="publish-time" value="now" checked class="text-brand-600"> Publish immediately
+                <input type="radio" name="publish-time" value="now" checked class="text-brand-600"> Publish immediately to feed
               </label>
               <label class="flex items-center gap-2 text-slate-300">
                 <input type="radio" name="publish-time" value="schedule" class="text-brand-600"> Schedule for a future date
@@ -542,9 +507,10 @@
         </div>
       </div>
 
+      <!-- Wizard Navigation Footer -->
       <div class="px-6 py-4 border-t border-slate-800 bg-surface-950 flex items-center justify-between">
         <button id="wizard-back-btn" onclick="wizardBack()" class="px-4 py-2 rounded-xl text-slate-400 hover:text-white transition">Back</button>
-        <button id="wizard-next-btn" onclick="wizardNext()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold shadow transition">Next: Details</button>
+        <button id="wizard-next-btn" onclick="wizardNext()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold shadow transition">Next: Details ›</button>
       </div>
     </div>
   </div>
@@ -703,7 +669,10 @@
 
     let currentEpisode = null;
     let wizardCurrentStep = 1;
-    let wizardAudioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+
+    // Multi-track audio queue state
+    let uploadedTracks = [];
+    const MAX_DURATION_SECONDS = 180 * 60; // 3 hours limit
 
     const audio = document.getElementById('audio-engine');
     const playIcon = document.getElementById('play-icon');
@@ -735,26 +704,22 @@
         document.getElementById('hero-desc-am').classList.add('hidden');
       }
 
-      // Update external platform buttons
       document.getElementById('chip-spotify').href = showSettings.spotifyUrl || '#';
       document.getElementById('chip-apple').href = showSettings.appleUrl || '#';
       document.getElementById('chip-amazon').href = showSettings.amazonUrl || '#';
       document.getElementById('chip-pocketcasts').href = showSettings.pocketcastsUrl || '#';
       document.getElementById('chip-iheart').href = showSettings.iheartUrl || '#';
 
-      // Inputs
       document.getElementById('input-show-name').value = showSettings.showName;
       document.getElementById('input-creator-name').value = showSettings.creatorName;
       document.getElementById('input-description').value = showSettings.description;
       document.getElementById('select-category').value = showSettings.category;
       document.getElementById('select-language').value = showSettings.language;
-      document.getElementById('toggle-explicit').checked = showSettings.explicit;
       document.getElementById('input-spotify-url').value = showSettings.spotifyUrl;
       document.getElementById('input-apple-url').value = showSettings.appleUrl;
       document.getElementById('input-amazon-url').value = showSettings.amazonUrl;
       document.getElementById('input-pocketcasts-url').value = showSettings.pocketcastsUrl;
       document.getElementById('input-iheart-url').value = showSettings.iheartUrl;
-      document.getElementById('input-rss-email').value = showSettings.rssEmail;
 
       updateCharCount('name', showSettings.showName, 100);
       updateCharCount('creator', showSettings.creatorName, 80);
@@ -768,17 +733,16 @@
         description: document.getElementById('input-description').value,
         category: document.getElementById('select-category').value,
         language: document.getElementById('select-language').value,
-        explicit: document.getElementById('toggle-explicit').checked,
         spotifyUrl: document.getElementById('input-spotify-url').value,
         appleUrl: document.getElementById('input-apple-url').value,
         amazonUrl: document.getElementById('input-amazon-url').value,
         pocketcastsUrl: document.getElementById('input-pocketcasts-url').value,
         iheartUrl: document.getElementById('input-iheart-url').value,
-        rssEmail: document.getElementById('input-rss-email').value
+        rssEmail: showSettings.rssEmail
       };
       localStorage.setItem('bitew_podcast_settings', JSON.stringify(showSettings));
       applySettingsToUI();
-      alert('All show and platform settings successfully saved!');
+      alert('All show and distribution settings saved!');
     }
 
     function updateCharCount(field, val, max) {
@@ -871,7 +835,7 @@
 
       audio.src = ep.audioUrl;
       audio.load();
-      audio.play().catch(e => console.log('Audio playing:', e));
+      audio.play().catch(e => console.log('Audio stream starting:', e));
       updatePlayerUI();
       renderEpisodes();
     }
@@ -973,7 +937,117 @@
       input.value = '';
     }
 
-    // Wizard
+    // ==================== MULTI-TRACK AUDIO UPLOAD & REORDERING ====================
+    function handleMultipleAudioUpload(event) {
+      const files = Array.from(event.target.files);
+      if (!files.length) return;
+
+      files.forEach((file) => {
+        const objectUrl = URL.createObjectURL(file);
+        const tempAudio = new Audio();
+        tempAudio.src = objectUrl;
+
+        // Estimate duration fallback
+        const trackItem = {
+          id: `trk-${Date.now()}-${Math.random()}`,
+          name: file.name,
+          sizeMb: (file.size / (1024 * 1024)).toFixed(1),
+          url: objectUrl,
+          durationSec: 180 // default estimate until metadata loads
+        };
+
+        tempAudio.addEventListener('loadedmetadata', () => {
+          if (tempAudio.duration) {
+            trackItem.durationSec = Math.round(tempAudio.duration);
+            renderUploadedTracks();
+          }
+        });
+
+        uploadedTracks.push(trackItem);
+      });
+
+      renderUploadedTracks();
+      event.target.value = ''; // Reset input to allow adding more files
+    }
+
+    function renderUploadedTracks() {
+      const listContainer = document.getElementById('audio-tracks-queue');
+      const countEl = document.getElementById('track-count');
+      const durationBadge = document.getElementById('queue-duration-badge');
+      const progressBar = document.getElementById('queue-progress-bar');
+      const warningEl = document.getElementById('duration-warning');
+
+      countEl.textContent = uploadedTracks.length;
+
+      if (!uploadedTracks.length) {
+        listContainer.innerHTML = `
+          <div class="p-4 text-center text-slate-500 bg-surface-950 rounded-xl border border-slate-800/80">
+            No audio tracks uploaded yet. Select files above to queue.
+          </div>
+        `;
+        durationBadge.textContent = "00:00 / 03:00:00 Max";
+        progressBar.style.width = "0%";
+        warningEl.classList.add('hidden');
+        return;
+      }
+
+      // Calculate total duration
+      const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0);
+      const formattedTotal = formatTime(totalSec);
+      const pct = Math.min(100, (totalSec / MAX_DURATION_SECONDS) * 100);
+
+      durationBadge.textContent = `${formattedTotal} / 03:00:00 Max`;
+      progressBar.style.width = `${pct}%`;
+
+      if (totalSec > MAX_DURATION_SECONDS) {
+        progressBar.className = "h-full bg-red-500 transition-all duration-300";
+        warningEl.classList.remove('hidden');
+      } else {
+        progressBar.className = "h-full bg-brand-500 transition-all duration-300";
+        warningEl.classList.add('hidden');
+      }
+
+      listContainer.innerHTML = uploadedTracks.map((t, idx) => `
+        <div class="p-2.5 bg-surface-950 border border-slate-800 rounded-xl flex items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2.5 min-w-0 flex-1">
+            <span class="w-5 h-5 rounded-full bg-surface-900 border border-slate-700 flex items-center justify-center font-mono text-[10px] text-slate-400 shrink-0">${idx + 1}</span>
+            <div class="min-w-0 flex-1">
+              <p class="font-medium text-slate-200 truncate">${t.name}</p>
+              <span class="text-[10px] text-slate-500 font-mono">${formatTime(t.durationSec)} • ${t.sizeMb} MB</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="moveTrackUp(${idx})" class="p-1 text-slate-400 hover:text-white rounded hover:bg-surface-800 disabled:opacity-30" ${idx === 0 ? 'disabled' : ''} title="Move Up">▲</button>
+            <button onclick="moveTrackDown(${idx})" class="p-1 text-slate-400 hover:text-white rounded hover:bg-surface-800 disabled:opacity-30" ${idx === uploadedTracks.length - 1 ? 'disabled' : ''} title="Move Down">▼</button>
+            <button onclick="deleteTrack(${idx})" class="p-1 text-slate-400 hover:text-red-400 rounded hover:bg-surface-800 ml-1" title="Delete Track">✕</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function moveTrackUp(index) {
+      if (index <= 0) return;
+      const temp = uploadedTracks[index];
+      uploadedTracks[index] = uploadedTracks[index - 1];
+      uploadedTracks[index - 1] = temp;
+      renderUploadedTracks();
+    }
+
+    function moveTrackDown(index) {
+      if (index >= uploadedTracks.length - 1) return;
+      const temp = uploadedTracks[index];
+      uploadedTracks[index] = uploadedTracks[index + 1];
+      uploadedTracks[index + 1] = temp;
+      renderUploadedTracks();
+    }
+
+    function deleteTrack(index) {
+      uploadedTracks.splice(index, 1);
+      renderUploadedTracks();
+    }
+
+    // ==================== WIZARD & MODAL CONTROLS ====================
     function openWizardStep(step) {
       wizardCurrentStep = step;
       document.getElementById('modal-wizard').classList.remove('hidden');
@@ -998,13 +1072,26 @@
       } else if (step === 3) {
         backBtn.classList.remove('invisible');
         nextBtn.textContent = "Publish Episode";
+        
+        const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0) || 2700;
         document.getElementById('review-title').textContent = document.getElementById('wizard-input-title').value || "Untitled Episode";
-        document.getElementById('review-desc').textContent = document.getElementById('wizard-input-desc').value || "No show notes.";
+        document.getElementById('review-desc').textContent = document.getElementById('wizard-input-desc').value || "No show notes provided.";
+        document.getElementById('review-tracks-count').textContent = `${uploadedTracks.length || 1} Audio Segment(s)`;
+        document.getElementById('review-duration').textContent = formatTime(totalSec);
       }
     }
 
     function wizardNext() {
       if (wizardCurrentStep === 1) {
+        if (!uploadedTracks.length) {
+          alert('Please select at least one audio track to proceed.');
+          return;
+        }
+        const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0);
+        if (totalSec > MAX_DURATION_SECONDS) {
+          alert('Cannot proceed: Total audio length exceeds the maximum allowed 3-hour limit.');
+          return;
+        }
         openWizardStep(2);
       } else if (wizardCurrentStep === 2) {
         const title = document.getElementById('wizard-input-title').value.trim();
@@ -1034,16 +1121,17 @@
       document.getElementById('modal-draft-prompt').classList.add('hidden');
       const title = document.getElementById('wizard-input-title').value.trim() || "Untitled Draft";
       const desc = document.getElementById('wizard-input-desc').value || "";
+      const primaryUrl = uploadedTracks.length ? uploadedTracks[0].url : "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
       
       const draftEp = {
         id: `ep-${Date.now()}`,
         title: title,
         date: "Draft",
-        duration: "00:00",
+        duration: "Draft",
         status: "Draft",
         plays: 0,
         desc: desc,
-        audioUrl: wizardAudioUrl
+        audioUrl: primaryUrl
       };
 
       episodes.unshift(draftEp);
@@ -1058,16 +1146,18 @@
       const title = document.getElementById('wizard-input-title').value.trim();
       const desc = document.getElementById('wizard-input-desc').value;
       const isSchedule = document.querySelector('input[name="publish-time"]:checked').value === 'schedule';
+      const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0) || 2700;
+      const primaryUrl = uploadedTracks.length ? uploadedTracks[0].url : "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
 
       const newEp = {
         id: `ep-${Date.now()}`,
         title: title,
         date: isSchedule ? "Scheduled" : new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-        duration: "45:00",
+        duration: formatTime(totalSec),
         status: isSchedule ? "Scheduled" : "Published",
         plays: 0,
         desc: desc,
-        audioUrl: wizardAudioUrl
+        audioUrl: primaryUrl
       };
 
       episodes.unshift(newEp);
@@ -1078,26 +1168,12 @@
       alert(`Episode "${title}" successfully published!`);
     }
 
-    function handleWizardFilePick(event) {
-      const file = event.target.files[0];
-      if (file) {
-        wizardAudioUrl = URL.createObjectURL(file);
-        document.getElementById('wizard-upload-status').textContent = `Loaded: ${file.name}`;
-      }
-    }
-
     function updateWizardTitleCount(val) {
       document.getElementById('wizard-title-count').textContent = `${val.length}/200`;
     }
 
     function updateWizardDescCount(val) {
       document.getElementById('wizard-desc-count').textContent = `${val.length}/4000`;
-    }
-
-    function appendFormat(tag) {
-      const desc = document.getElementById('wizard-input-desc');
-      desc.value += tag;
-      desc.focus();
     }
 
     function persistEpisodes() {
@@ -1130,6 +1206,14 @@
       });
     }
 
+    function copyRssFromInput() {
+      const copyText = document.getElementById("rss-feed-input");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText.value);
+      alert("RSS Feed URL copied to clipboard!");
+    }
+
     function handleSearch() {
       const q = document.getElementById('search-input').value.toLowerCase();
       const filtered = episodes.filter(e => 
@@ -1137,6 +1221,16 @@
       );
       renderEpisodes(filtered);
     }
+
+    // Keyboard support: Escape closes wizard
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const wizard = document.getElementById('modal-wizard');
+        if (!wizard.classList.contains('hidden')) {
+          requestCloseWizard();
+        }
+      }
+    });
 
     window.addEventListener('DOMContentLoaded', () => {
       applySettingsToUI();
