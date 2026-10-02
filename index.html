@@ -21,6 +21,7 @@
             },
             surface: {
               800: '#181b26',
+              850: '#141722',
               900: '#0f111a',
               950: '#0a0c12'
             }
@@ -31,9 +32,17 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', sans-serif; }
+    body { 
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', sans-serif;
+      background-color: #080a0f;
+      background-image: 
+        radial-gradient(at 10% 10%, rgba(124, 58, 237, 0.12) 0px, transparent 45%),
+        radial-gradient(at 90% 20%, rgba(217, 119, 6, 0.08) 0px, transparent 40%),
+        radial-gradient(at 50% 90%, rgba(99, 102, 241, 0.1) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
     .fidel { font-family: 'Noto Sans Ethiopic', sans-serif; }
     input[type=range]::-webkit-slider-thumb {
       height: 14px;
@@ -45,12 +54,12 @@
     }
   </style>
 </head>
-<body class="bg-surface-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-600 selection:text-white pb-32">
+<body class="text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-600 selection:text-white pb-36">
 
   <!-- TOP NAVIGATION -->
-  <header class="sticky top-0 z-40 bg-surface-900/90 backdrop-blur-md border-b border-slate-800/80 px-4 lg:px-8 py-3.5 flex items-center justify-between">
+  <header class="sticky top-0 z-40 bg-surface-950/85 backdrop-blur-md border-b border-slate-800/80 px-4 lg:px-8 py-3.5 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-amber-500 via-purple-600 to-indigo-600 p-[2px] shadow-lg shadow-purple-500/20">
+      <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-amber-500 via-purple-600 to-indigo-600 p-[2px] shadow-lg shadow-purple-500/20 shrink-0">
         <div class="h-full w-full bg-surface-950 rounded-full flex items-center justify-center text-xs font-black tracking-wider text-amber-400">
           TBF
         </div>
@@ -65,7 +74,7 @@
     </div>
 
     <div class="flex items-center gap-2.5">
-      <button id="btn-sync-rss" onclick="fetchLiveRSS()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-surface-800 border border-slate-700 hover:bg-slate-700/60 transition">
+      <button id="btn-sync-rss" onclick="fetchLiveRSS()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-surface-900 border border-slate-700/80 hover:bg-slate-800 transition">
         <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
         <span id="sync-text">Sync Feed</span>
       </button>
@@ -78,11 +87,14 @@
   </header>
 
   <!-- ==================== PUBLIC LISTENER VIEW ==================== -->
-  <main id="view-public" class="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-6 space-y-8 flex-1">
+  <main id="view-public" class="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-6 space-y-7 flex-1">
     
     <!-- SHOW HERO BANNER -->
-    <section class="bg-gradient-to-br from-surface-800 via-surface-900 to-surface-950 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+    <section class="bg-gradient-to-br from-surface-800/90 via-surface-900/95 to-surface-950 border border-slate-800/90 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden backdrop-blur-sm">
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      
       <div class="relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
+        <!-- Show Artwork Badge -->
         <div class="relative group mx-auto md:mx-0 shrink-0">
           <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-black border border-slate-700/80 shadow-2xl flex flex-col items-center justify-center text-center p-4 relative overflow-hidden">
             <div class="w-20 h-20 rounded-full border-2 border-amber-500/80 flex items-center justify-center mb-2 shadow-inner">
@@ -90,16 +102,17 @@
             </div>
             <p id="hero-badge-title" class="text-[11px] font-bold text-white tracking-widest uppercase">TBF PODCAST</p>
           </div>
-          <button onclick="playFeatured()" class="absolute bottom-2 right-2 p-3 bg-brand-600 hover:bg-brand-500 rounded-full text-white shadow-lg shadow-brand-600/50 transition transform hover:scale-105 active:scale-95">
+          <button onclick="playFeatured()" class="absolute bottom-2 right-2 p-3 bg-brand-600 hover:bg-brand-500 rounded-full text-white shadow-lg shadow-brand-600/50 transition transform hover:scale-105 active:scale-95" title="Play Latest Episode">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </button>
         </div>
 
+        <!-- Show Meta -->
         <div class="space-y-3.5 flex-1 text-center md:text-left">
           <div>
             <div class="flex items-center justify-center md:justify-start gap-2.5 flex-wrap">
               <h1 id="hero-title" class="text-2xl sm:text-3xl font-extrabold text-white">TBF</h1>
-              <span id="hero-category-tag" class="px-2.5 py-0.5 rounded-full text-xs bg-slate-800 text-slate-300 border border-slate-700">Arts</span>
+              <span id="hero-category-tag" class="px-2.5 py-0.5 rounded-full text-xs bg-surface-900 text-slate-300 border border-slate-700">Arts</span>
             </div>
             <p id="hero-creator" class="text-xs text-brand-400 font-medium mt-0.5">By THE BITEW FOUNDATION</p>
           </div>
@@ -115,27 +128,27 @@
           <div class="flex items-center justify-center md:justify-start gap-2 pt-1 flex-wrap">
             <span class="text-xs text-slate-400 font-medium mr-1">Available on:</span>
             
-            <a id="chip-spotify" href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-emerald-500/50 hover:text-emerald-400 transition flex items-center gap-1.5">
+            <a id="chip-spotify" href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-900 text-slate-200 border border-slate-700/80 hover:border-emerald-500/50 hover:text-emerald-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Spotify
             </a>
 
-            <a id="chip-apple" href="https://podcasts.apple.com/us/podcast/tbf/id1586071693" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-purple-500/50 hover:text-purple-400 transition flex items-center gap-1.5">
+            <a id="chip-apple" href="https://podcasts.apple.com/us/podcast/tbf/id1586071693" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-900 text-slate-200 border border-slate-700/80 hover:border-purple-500/50 hover:text-purple-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-purple-500"></span> Apple Podcasts
             </a>
 
-            <a id="chip-amazon" href="https://music.amazon.com/podcasts" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-cyan-500/50 hover:text-cyan-400 transition flex items-center gap-1.5">
+            <a id="chip-amazon" href="https://music.amazon.com/podcasts" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-900 text-slate-200 border border-slate-700/80 hover:border-cyan-500/50 hover:text-cyan-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Amazon Music
             </a>
 
-            <a id="chip-pocketcasts" href="https://pca.st/itunes/1586071693" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-red-500/50 hover:text-red-400 transition flex items-center gap-1.5">
+            <a id="chip-pocketcasts" href="https://pca.st/itunes/1586071693" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-900 text-slate-200 border border-slate-700/80 hover:border-red-500/50 hover:text-red-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-red-500"></span> Pocket Casts
             </a>
 
-            <a id="chip-iheart" href="https://www.iheart.com/podcast/" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-rose-500/50 hover:text-rose-400 transition flex items-center gap-1.5">
+            <a id="chip-iheart" href="https://www.iheart.com/podcast/" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-900 text-slate-200 border border-slate-700/80 hover:border-rose-500/50 hover:text-rose-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-rose-600"></span> iHeartRadio
             </a>
 
-            <a id="chip-rss" href="https://anchor.fm/s/6b532648/podcast/rss" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-800 text-slate-200 border border-slate-700/80 hover:border-amber-500/50 hover:text-amber-400 transition flex items-center gap-1.5">
+            <a id="chip-rss" href="https://anchor.fm/s/6b532648/podcast/rss" target="_blank" class="px-2.5 py-1 rounded-md text-xs bg-surface-900 text-slate-200 border border-slate-700/80 hover:border-amber-500/50 hover:text-amber-400 transition flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-amber-500"></span> RSS Feed
             </a>
           </div>
@@ -143,8 +156,58 @@
       </div>
     </section>
 
+    <!-- PROMINENT AD / ANNOUNCEMENT BANNER -->
+    <div id="promo-banner" class="bg-gradient-to-r from-purple-950/60 via-slate-900/80 to-amber-950/40 border border-purple-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 backdrop-blur-sm shadow-lg">
+      <div class="flex items-start sm:items-center gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Announcement</span>
+            <h3 id="promo-title" class="text-xs sm:text-sm font-bold text-white">Join the TBF Community & New Episode Alerts</h3>
+          </div>
+          <p id="promo-desc" class="text-xs text-slate-300 mt-0.5">Subscribe on our social channels or tune in weekly for critical analyses on community welfare and social impact.</p>
+        </div>
+      </div>
+      <a id="promo-link" href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow-md shadow-brand-600/30 transition whitespace-nowrap self-end sm:self-auto">
+        Learn More ↗
+      </a>
+    </div>
+
+    <!-- SOCIAL MEDIA & COMMUNITY CHANNELS STRIP -->
+    <div class="p-3.5 bg-surface-900/70 border border-slate-800/80 rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2 text-slate-400">
+        <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <span class="font-medium text-slate-300">Connect with the Bitew Foundation:</span>
+      </div>
+
+      <div class="flex items-center gap-2 flex-wrap">
+        <a href="https://youtube.com" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 hover:text-red-400 hover:border-red-500/40 transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube
+        </a>
+        <a href="https://telegram.org" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 hover:text-sky-400 hover:border-sky-500/40 transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+          Telegram
+        </a>
+        <a href="https://facebook.com" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 hover:text-blue-400 hover:border-blue-500/40 transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+        <a href="https://x.com" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-500 transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X (Twitter)
+        </a>
+        <a href="mailto:btisase@yahoo.com" class="px-2.5 py-1.5 rounded-lg bg-surface-950 border border-slate-800 text-slate-300 hover:text-amber-400 hover:border-amber-500/40 transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Contact Us
+        </a>
+      </div>
+    </div>
+
     <!-- SEARCH & CONTROLS -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
       <div class="relative w-full sm:max-w-md">
         <svg class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         <input id="search-input" oninput="handleSearch()" type="text" placeholder="ፈልግ / Search episodes by title, topic or Amharic keywords..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-900 border border-slate-800 text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
@@ -156,6 +219,58 @@
 
     <!-- EPISODES LIST CONTAINER -->
     <div id="episodes-container" class="space-y-3"></div>
+
+    <!-- DEDICATED APP FOOTER -->
+    <footer class="mt-16 pt-8 pb-12 border-t border-slate-800/80 text-xs text-slate-400">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="md:col-span-2 space-y-3">
+          <div class="flex items-center gap-2.5">
+            <div class="h-8 w-8 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center font-bold text-amber-400 text-xs">
+              TBF
+            </div>
+            <span class="font-bold text-white text-sm">Bitew Podcast • TBF</span>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+            Empowering communities through informed dialogues, human rights awareness, socio-economic education, and cultural preservation.
+          </p>
+          <p class="text-slate-500 fidel text-[11px] leading-relaxed">
+            የተሟላ ማህበራዊ ፍትህ እና የዜጎች ሁለንተናዊ እድገት እንዲሰፍን የበኩሉን ሚና የሚወጣ ነፃ የድምፅ መድረክ።
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-3">Listening Platforms</h4>
+          <ul class="space-y-2">
+            <li><a href="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" target="_blank" class="hover:text-emerald-400 transition">Spotify Podcasts</a></li>
+            <li><a href="https://podcasts.apple.com/us/podcast/tbf/id1586071693" target="_blank" class="hover:text-purple-400 transition">Apple Podcasts</a></li>
+            <li><a href="https://music.amazon.com/podcasts" target="_blank" class="hover:text-cyan-400 transition">Amazon Music</a></li>
+            <li><a href="https://pca.st/itunes/1586071693" target="_blank" class="hover:text-red-400 transition">Pocket Casts</a></li>
+            <li><a href="https://anchor.fm/s/6b532648/podcast/rss" target="_blank" class="hover:text-amber-400 transition">RSS Master Feed</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-3">Studio & Admin</h4>
+          <ul class="space-y-2">
+            <li><button onclick="toggleView('creator')" class="hover:text-brand-400 transition text-left">Creator Studio Dashboard</button></li>
+            <li><button onclick="openWizardStep(1)" class="hover:text-brand-400 transition text-left">Publish New Episode</button></li>
+            <li><button onclick="switchSettingsSubtab('availability'); toggleView('creator'); switchAdminTab('settings')" class="hover:text-brand-400 transition text-left">Availability Settings</button></li>
+            <li><a href="mailto:btisase@yahoo.com" class="hover:text-white transition">Support & Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
+        <p>© 2026 THE BITEW FOUNDATION. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <span>Privacy Policy</span>
+          <span>•</span>
+          <span>Terms of Distribution</span>
+          <span>•</span>
+          <span class="text-brand-400">Standalone Web Application</span>
+        </div>
+      </div>
+    </footer>
   </main>
 
   <!-- ==================== CREATOR / ADMIN VIEW ==================== -->
@@ -166,7 +281,7 @@
         <h2 class="text-xl font-bold text-white">Show settings & Episodes</h2>
         <p class="text-xs text-slate-400">Manage catalog, discovery, availability, and multi-step episode publishing</p>
       </div>
-      <button onclick="toggleView('public')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-surface-800 border border-slate-700 hover:bg-slate-700 transition">
+      <button onclick="toggleView('public')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-surface-900 border border-slate-700 hover:bg-slate-800 transition">
         ← Back to Listener View
       </button>
     </div>
@@ -191,10 +306,10 @@
         <button onclick="openWizardStep(1)" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow transition self-end sm:self-auto">+ New Episode</button>
       </div>
 
-      <div class="bg-surface-900 border border-slate-800 rounded-xl overflow-hidden">
+      <div class="bg-surface-900/90 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs text-slate-300">
-            <thead class="bg-surface-800/60 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
+            <thead class="bg-surface-850 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
               <tr>
                 <th class="py-3 px-4">Title</th>
                 <th class="py-3 px-4">Status</th>
@@ -212,7 +327,7 @@
     </div>
 
     <!-- TAB 2: SHOW SETTINGS -->
-    <div id="admin-tab-settings" class="hidden bg-surface-900 border border-slate-800 rounded-xl p-6 space-y-6">
+    <div id="admin-tab-settings" class="hidden bg-surface-900/90 border border-slate-800 rounded-xl p-6 space-y-6 shadow-xl">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-xl bg-black border border-slate-700 flex items-center justify-center text-amber-400 text-xs font-bold">
@@ -230,7 +345,7 @@
         <button onclick="switchSettingsSubtab('details')" id="subtab-btn-details" class="pb-2 border-b-2 border-brand-500 text-white font-semibold">Podcast</button>
         <button onclick="switchSettingsSubtab('comments')" id="subtab-btn-comments" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Comments</button>
         <button onclick="switchSettingsSubtab('availability')" id="subtab-btn-availability" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Availability</button>
-        <button onclick="switchSettingsSubtab('discovery')" id="subtab-btn-discovery" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Discovery & Assets</button>
+        <button onclick="switchSettingsSubtab('marketing')" id="subtab-btn-marketing" class="pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200">Announcements & Ads</button>
       </div>
 
       <!-- DETAILS SUBTAB -->
@@ -362,10 +477,30 @@
         </div>
       </div>
 
-      <!-- DISCOVERY SUBTAB -->
-      <div id="subtab-content-discovery" class="hidden space-y-5 text-xs">
-        <div class="p-3 bg-surface-950 rounded-lg border border-slate-800">
-          <span class="text-slate-200">✓ Set to latest episode as best place to start</span>
+      <!-- MARKETING / ANNOUNCEMENTS SUBTAB -->
+      <div id="subtab-content-marketing" class="hidden space-y-5 text-xs">
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-1">Banner Announcement & Sponsorship Slot</h4>
+          <p class="text-slate-400 mb-3">Control the announcement bar that appears above the episode archive on the listener page.</p>
+        </div>
+
+        <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+            <span class="font-semibold text-white">Display banner on home page</span>
+            <input type="checkbox" id="toggle-promo-visible" checked class="w-4 h-4 rounded bg-surface-900 border-slate-700 text-brand-600">
+          </div>
+          <div>
+            <label class="font-semibold text-slate-300 block mb-1">Banner Title</label>
+            <input id="input-promo-title" type="text" value="Join the TBF Community & New Episode Alerts" class="w-full px-3 py-2 rounded-lg bg-surface-900 border border-slate-700 text-white">
+          </div>
+          <div>
+            <label class="font-semibold text-slate-300 block mb-1">Announcement Message</label>
+            <textarea id="input-promo-desc" rows="2" class="w-full px-3 py-2 rounded-lg bg-surface-900 border border-slate-700 text-white">Subscribe on our social channels or tune in weekly for critical analyses on community welfare and social impact.</textarea>
+          </div>
+          <div>
+            <label class="font-semibold text-slate-300 block mb-1">Button Target Link</label>
+            <input id="input-promo-link" type="text" value="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" class="w-full px-3 py-2 rounded-lg bg-surface-900 border border-slate-700 text-slate-300 font-mono text-[11px]">
+          </div>
         </div>
       </div>
     </div>
@@ -388,7 +523,6 @@
           </div>
         </div>
         
-        <!-- Force Close Button -->
         <button type="button" onclick="forceCloseWizard()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition text-sm font-bold flex items-center gap-1" title="Close Wizard (Esc)">
           <span>Close</span>
           <span class="text-base">✕</span>
@@ -401,7 +535,6 @@
         <!-- STEP 1: UPLOAD & LIVE RECORDER -->
         <div id="wizard-step-1" class="space-y-5">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- File Selector Area -->
             <div class="text-center py-6 border-2 border-dashed border-slate-700 hover:border-brand-500 rounded-2xl bg-surface-950 p-5 relative cursor-pointer transition">
               <input type="file" id="wizard-file-input" accept="audio/*" multiple class="absolute inset-0 opacity-0 cursor-pointer" onchange="handleMultipleAudioUpload(event)">
               <svg class="w-8 h-8 mx-auto text-brand-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
@@ -409,7 +542,6 @@
               <p class="text-slate-500 text-[10px] mt-1">Select one or multiple audio tracks (MP3, WAV)</p>
             </div>
 
-            <!-- In-Browser Voice Recorder -->
             <div class="p-5 bg-surface-950 rounded-2xl border border-slate-800 flex flex-col justify-between text-center">
               <div>
                 <span class="font-bold text-white block text-xs mb-1">Live Voice Recording</span>
@@ -575,11 +707,11 @@
   </div>
 
   <!-- PERSISTENT AUDIO PLAYER -->
-  <footer class="fixed bottom-0 inset-x-0 z-40 bg-surface-900/95 backdrop-blur-lg border-t border-slate-800 px-4 py-3 shadow-2xl">
+  <footer class="fixed bottom-0 inset-x-0 z-40 bg-surface-950/95 backdrop-blur-xl border-t border-slate-800/90 px-4 py-3 shadow-2xl">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
       
       <div class="flex items-center gap-3 w-full sm:w-1/3 min-w-0">
-        <div id="player-art" class="w-11 h-11 rounded-lg bg-surface-950 border border-slate-700 shrink-0 flex items-center justify-center font-bold text-amber-500 text-[10px]">
+        <div id="player-art" class="w-11 h-11 rounded-lg bg-surface-900 border border-slate-700 shrink-0 flex items-center justify-center font-bold text-amber-500 text-[10px]">
           TBF
         </div>
         <div class="min-w-0 flex-1">
@@ -615,7 +747,7 @@
       </div>
 
       <div class="hidden sm:flex items-center justify-end gap-2 w-1/3 text-xs">
-        <button id="btn-speed" onclick="cycleSpeed()" class="px-2.5 py-1 rounded bg-surface-950 border border-slate-800 text-slate-300 font-mono text-xs hover:border-slate-700">1.0x</button>
+        <button id="btn-speed" onclick="cycleSpeed()" class="px-2.5 py-1 rounded bg-surface-900 border border-slate-800 text-slate-300 font-mono text-xs hover:border-slate-700">1.0x</button>
       </div>
     </div>
   </footer>
@@ -636,7 +768,11 @@
       amazonUrl: "https://music.amazon.com/podcasts",
       pocketcastsUrl: "https://pca.st/itunes/1586071693",
       iheartUrl: "https://www.iheart.com/podcast/",
-      rssEmail: "btisase@yahoo.com"
+      rssEmail: "btisase@yahoo.com",
+      promoVisible: true,
+      promoTitle: "Join the TBF Community & New Episode Alerts",
+      promoDesc: "Subscribe on our social channels or tune in weekly for critical analyses on community welfare and social impact.",
+      promoLink: "https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh"
     };
 
     let showSettings = JSON.parse(localStorage.getItem('bitew_podcast_settings')) || DEFAULT_SETTINGS;
@@ -681,7 +817,7 @@
     let activeStatusFilter = 'all';
 
     let uploadedTracks = [];
-    const MAX_DURATION_SECONDS = 180 * 60; // 3 hours limit
+    const MAX_DURATION_SECONDS = 180 * 60;
 
     let mediaRecorder = null;
     let recordedChunks = [];
@@ -725,6 +861,17 @@
       document.getElementById('chip-pocketcasts').href = showSettings.pocketcastsUrl || '#';
       document.getElementById('chip-iheart').href = showSettings.iheartUrl || '#';
 
+      // Promo Banner Sync
+      const promoBanner = document.getElementById('promo-banner');
+      if (showSettings.promoVisible) {
+        promoBanner.classList.remove('hidden');
+        document.getElementById('promo-title').textContent = showSettings.promoTitle;
+        document.getElementById('promo-desc').textContent = showSettings.promoDesc;
+        document.getElementById('promo-link').href = showSettings.promoLink;
+      } else {
+        promoBanner.classList.add('hidden');
+      }
+
       document.getElementById('input-show-name').value = showSettings.showName;
       document.getElementById('input-creator-name').value = showSettings.creatorName;
       document.getElementById('input-description').value = showSettings.description;
@@ -735,6 +882,12 @@
       document.getElementById('input-amazon-url').value = showSettings.amazonUrl;
       document.getElementById('input-pocketcasts-url').value = showSettings.pocketcastsUrl;
       document.getElementById('input-iheart-url').value = showSettings.iheartUrl;
+
+      // Marketing inputs
+      document.getElementById('toggle-promo-visible').checked = showSettings.promoVisible;
+      document.getElementById('input-promo-title').value = showSettings.promoTitle;
+      document.getElementById('input-promo-desc').value = showSettings.promoDesc;
+      document.getElementById('input-promo-link').value = showSettings.promoLink;
 
       updateCharCount('name', showSettings.showName, 100);
       updateCharCount('creator', showSettings.creatorName, 80);
@@ -753,11 +906,15 @@
         amazonUrl: document.getElementById('input-amazon-url').value,
         pocketcastsUrl: document.getElementById('input-pocketcasts-url').value,
         iheartUrl: document.getElementById('input-iheart-url').value,
-        rssEmail: showSettings.rssEmail
+        rssEmail: showSettings.rssEmail,
+        promoVisible: document.getElementById('toggle-promo-visible').checked,
+        promoTitle: document.getElementById('input-promo-title').value,
+        promoDesc: document.getElementById('input-promo-desc').value,
+        promoLink: document.getElementById('input-promo-link').value
       };
       localStorage.setItem('bitew_podcast_settings', JSON.stringify(showSettings));
       applySettingsToUI();
-      alert('All show and distribution settings saved!');
+      alert('All show, distribution, and announcement settings saved!');
     }
 
     function updateCharCount(field, val, max) {
@@ -765,7 +922,7 @@
     }
 
     function switchSettingsSubtab(sub) {
-      ['details', 'comments', 'availability', 'discovery'].forEach(s => {
+      ['details', 'comments', 'availability', 'marketing'].forEach(s => {
         document.getElementById(`subtab-content-${s}`).classList.add('hidden');
         document.getElementById(`subtab-btn-${s}`).className = "pb-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200";
       });
@@ -802,10 +959,10 @@
       publicList.forEach((ep) => {
         const isPlayingThis = currentEpisode && currentEpisode.id === ep.id && !audio.paused;
         const card = document.createElement('div');
-        card.className = "bg-surface-900 border border-slate-800/80 hover:border-slate-700 rounded-xl p-4 sm:p-5 transition flex items-center justify-between gap-4 group";
+        card.className = "bg-surface-900/80 border border-slate-800/80 hover:border-slate-700/80 rounded-2xl p-4 sm:p-5 transition flex items-center justify-between gap-4 group backdrop-blur-sm shadow-md hover:shadow-xl";
         card.innerHTML = `
           <div class="flex items-start sm:items-center gap-3.5 min-w-0 flex-1">
-            <button onclick="playEpisode('${ep.id}')" class="w-10 h-10 rounded-full ${isPlayingThis ? 'bg-brand-600 text-white' : 'bg-surface-800 group-hover:bg-brand-600/20 text-slate-300 group-hover:text-brand-400'} border border-slate-700/80 shrink-0 flex items-center justify-center transition">
+            <button onclick="playEpisode('${ep.id}')" class="w-10 h-10 rounded-full ${isPlayingThis ? 'bg-brand-600 text-white' : 'bg-surface-950 group-hover:bg-brand-600/20 text-slate-300 group-hover:text-brand-400'} border border-slate-700/80 shrink-0 flex items-center justify-center transition">
               <svg class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24">
                 <path d="${isPlayingThis ? 'M6 19h4V5H6v14zm8-14v14h4V5h-4z' : 'M8 5v14l11-7z'}"/>
               </svg>
@@ -825,7 +982,7 @@
             </div>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <button onclick="openNotesModal('${ep.id}')" class="px-2.5 py-1.5 rounded-lg text-xs bg-surface-800 text-slate-300 hover:text-white border border-slate-700/70 transition">
+            <button onclick="openNotesModal('${ep.id}')" class="px-2.5 py-1.5 rounded-lg text-xs bg-surface-950 text-slate-300 hover:text-white border border-slate-700/70 transition">
               Notes
             </button>
           </div>
@@ -851,7 +1008,7 @@
 
       audio.src = ep.audioUrl;
       audio.load();
-      audio.play().catch(e => console.log('Audio playback starting:', e));
+      audio.play().catch(e => console.log('Audio stream starting:', e));
       updatePlayerUI();
       renderEpisodes();
     }
@@ -1251,7 +1408,7 @@
       forceCloseWizard();
       renderAdminTable();
       renderEpisodes();
-      alert('Saved as Draft in your catalog.');
+      alert('Episode successfully saved as Draft!');
     }
 
     function finishAndPublishWizard() {
@@ -1301,7 +1458,7 @@
       alert(`Episode "${title}" successfully ${isSchedule ? 'scheduled' : 'published'}!`);
     }
 
-    // ==================== SPECIFIC UNPUBLISH / PUBLISH TOGGLE ====================
+    // ==================== UNPUBLISH & DIRECT PUBLISH ACTIONS ====================
     function unpublishEpisode(id) {
       const ep = episodes.find(e => e.id === id);
       if (!ep) return;
@@ -1411,13 +1568,13 @@
         }
 
         row.innerHTML = `
-          <td class="py-3 px-4 max-w-xs truncate text-white fidel">${ep.title}</td>
+          <td class="py-3 px-4 max-w-xs truncate text-white fidel font-medium">${ep.title}</td>
           <td class="py-3 px-4">${statusBadge}</td>
           <td class="py-3 px-4 text-slate-400">${ep.date}</td>
           <td class="py-3 px-4 text-slate-400">Audio</td>
           <td class="py-3 px-4 text-slate-400">${ep.duration}</td>
           <td class="py-3 px-4 font-mono text-slate-300">${ep.plays || 0}</td>
-          <td class="py-3 px-4 text-right">
+          <td class="py-3 px-4 text-right whitespace-nowrap">
             ${statusActionBtn}
             <button onclick="playEpisode('${ep.id}')" class="text-brand-400 hover:underline mr-2">Play</button>
             <button onclick="openWizardStep(2, '${ep.id}')" class="text-slate-400 hover:text-white mr-2">Edit</button>
