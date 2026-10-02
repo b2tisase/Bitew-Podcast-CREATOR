@@ -83,7 +83,6 @@
     <!-- SHOW HERO BANNER -->
     <section class="bg-gradient-to-br from-surface-800 via-surface-900 to-surface-950 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
       <div class="relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
-        <!-- Show Artwork Badge -->
         <div class="relative group mx-auto md:mx-0 shrink-0">
           <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-black border border-slate-700/80 shadow-2xl flex flex-col items-center justify-center text-center p-4 relative overflow-hidden">
             <div class="w-20 h-20 rounded-full border-2 border-amber-500/80 flex items-center justify-center mb-2 shadow-inner">
@@ -96,7 +95,6 @@
           </button>
         </div>
 
-        <!-- Show Meta -->
         <div class="space-y-3.5 flex-1 text-center md:text-left">
           <div>
             <div class="flex items-center justify-center md:justify-start gap-2.5 flex-wrap">
@@ -182,10 +180,17 @@
 
     <!-- TAB 1: EPISODES MANAGER TABLE -->
     <div id="admin-tab-episodes" class="space-y-4">
-      <div class="flex items-center justify-between">
-        <span class="text-xs text-slate-400">Manage existing audio catalog</span>
-        <button onclick="openWizardStep(1)" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow transition">+ New Episode</button>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <!-- Status Filter Pills -->
+        <div class="flex items-center gap-1.5 overflow-x-auto text-xs">
+          <button onclick="filterStatus('all')" id="pill-all" class="px-3 py-1.5 rounded-lg font-semibold bg-brand-600 text-white">All (<span id="count-all">0</span>)</button>
+          <button onclick="filterStatus('Draft')" id="pill-draft" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 bg-surface-900 border border-slate-800">Draft (<span id="count-draft">0</span>)</button>
+          <button onclick="filterStatus('Published')" id="pill-published" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 bg-surface-900 border border-slate-800">Published (<span id="count-published">0</span>)</button>
+          <button onclick="filterStatus('Scheduled')" id="pill-scheduled" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 bg-surface-900 border border-slate-800">Scheduled (<span id="count-scheduled">0</span>)</button>
+        </div>
+        <button onclick="openWizardStep(1)" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow transition self-end sm:self-auto">+ New Episode</button>
       </div>
+
       <div class="bg-surface-900 border border-slate-800 rounded-xl overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs text-slate-300">
@@ -284,14 +289,13 @@
         </div>
       </div>
 
-      <!-- AVAILABILITY SUBTAB WITH DIRECT EXTERNAL SUBMISSION ACTIONS -->
+      <!-- AVAILABILITY SUBTAB -->
       <div id="subtab-content-availability" class="hidden space-y-6 text-xs">
         <div>
           <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-1">Podcast Platforms & Submission Directory</h4>
           <p class="text-slate-400 mb-4">Click "Submit Feed ↗" to register or verify your show's RSS feed directly on each network:</p>
 
           <div class="grid grid-cols-1 gap-3.5">
-            <!-- Spotify -->
             <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div class="flex items-center gap-2.5">
                 <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
@@ -300,12 +304,9 @@
                   <input id="input-spotify-url" type="text" value="https://open.spotify.com/show/1WKPqcGvPnEklsmk5AsGoh" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
                 </div>
               </div>
-              <div class="flex items-center gap-2 self-end sm:self-center">
-                <a href="https://creators.spotify.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 font-semibold transition">Submit Feed ↗</a>
-              </div>
+              <a href="https://creators.spotify.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 font-semibold transition">Submit Feed ↗</a>
             </div>
 
-            <!-- Apple -->
             <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div class="flex items-center gap-2.5">
                 <span class="w-3 h-3 rounded-full bg-purple-500"></span>
@@ -314,12 +315,9 @@
                   <input id="input-apple-url" type="text" value="https://podcasts.apple.com/us/podcast/tbf/id1586071693" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
                 </div>
               </div>
-              <div class="flex items-center gap-2 self-end sm:self-center">
-                <a href="https://podcastsconnect.apple.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/30 hover:bg-purple-500/20 font-semibold transition">Submit Feed ↗</a>
-              </div>
+              <a href="https://podcastsconnect.apple.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/30 hover:bg-purple-500/20 font-semibold transition">Submit Feed ↗</a>
             </div>
 
-            <!-- Amazon -->
             <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div class="flex items-center gap-2.5">
                 <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
@@ -328,12 +326,9 @@
                   <input id="input-amazon-url" type="text" value="https://music.amazon.com/podcasts" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
                 </div>
               </div>
-              <div class="flex items-center gap-2 self-end sm:self-center">
-                <a href="https://podcasters.amazon.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/20 font-semibold transition">Submit Feed ↗</a>
-              </div>
+              <a href="https://podcasters.amazon.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/20 font-semibold transition">Submit Feed ↗</a>
             </div>
 
-            <!-- Pocket Casts -->
             <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div class="flex items-center gap-2.5">
                 <span class="w-3 h-3 rounded-full bg-red-500"></span>
@@ -342,12 +337,9 @@
                   <input id="input-pocketcasts-url" type="text" value="https://pca.st/itunes/1586071693" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
                 </div>
               </div>
-              <div class="flex items-center gap-2 self-end sm:self-center">
-                <a href="https://pocketcasts.com/submit" target="_blank" class="px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 border border-red-500/30 hover:bg-red-500/20 font-semibold transition">Submit Feed ↗</a>
-              </div>
+              <a href="https://pocketcasts.com/submit" target="_blank" class="px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 border border-red-500/30 hover:bg-red-500/20 font-semibold transition">Submit Feed ↗</a>
             </div>
 
-            <!-- iHeart -->
             <div class="p-3 bg-surface-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div class="flex items-center gap-2.5">
                 <span class="w-3 h-3 rounded-full bg-rose-600"></span>
@@ -356,14 +348,11 @@
                   <input id="input-iheart-url" type="text" value="https://www.iheart.com/podcast/" class="bg-transparent border-0 text-slate-400 text-[11px] font-mono p-0 w-64 sm:w-80 truncate">
                 </div>
               </div>
-              <div class="flex items-center gap-2 self-end sm:self-center">
-                <a href="https://podcasters.iheart.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/30 hover:bg-rose-500/20 font-semibold transition">Submit Feed ↗</a>
-              </div>
+              <a href="https://podcasters.iheart.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/30 hover:bg-rose-500/20 font-semibold transition">Submit Feed ↗</a>
             </div>
           </div>
         </div>
 
-        <!-- Master RSS Box -->
         <div class="p-4 bg-surface-950 rounded-xl border border-slate-800 space-y-2">
           <span class="text-amber-400 font-bold block">Your Live RSS Feed Link</span>
           <div class="flex gap-2">
@@ -382,12 +371,12 @@
     </div>
   </main>
 
-  <!-- ==================== EPISODE CREATOR WIZARD WITH MULTI-TRACK AUDIO QUEUE ==================== -->
-  <div id="modal-wizard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6">
-    <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+  <!-- ==================== EPISODE CREATOR WIZARD MODAL ==================== -->
+  <div id="modal-wizard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6" style="display: none;">
+    <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden relative">
       
       <!-- Wizard Top Header with Explicit Close Action -->
-      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-surface-900 shrink-0">
         <div>
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Create episode</span>
           <div class="flex items-center gap-2 text-xs font-semibold mt-0.5">
@@ -398,23 +387,49 @@
             <span id="step-crumb-3" class="text-slate-500">Review</span>
           </div>
         </div>
-        <button type="button" onclick="requestCloseWizard()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-surface-800 transition" title="Close Wizard">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        
+        <!-- Force Close Button -->
+        <button type="button" onclick="forceCloseWizard()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition text-sm font-bold flex items-center gap-1" title="Close Wizard (Esc)">
+          <span>Close</span>
+          <span class="text-base">✕</span>
         </button>
       </div>
 
       <!-- Wizard Body -->
       <div class="p-6 overflow-y-auto flex-1 space-y-6 text-xs text-slate-300">
         
-        <!-- STEP 1: MULTI-FILE AUDIO UPLOAD & REORDERING -->
+        <!-- STEP 1: MULTI-FILE UPLOAD + LIVE VOICE RECORDER -->
         <div id="wizard-step-1" class="space-y-5">
           
-          <!-- Drop Area (Accepts Multiple Files) -->
-          <div class="text-center py-7 border-2 border-dashed border-slate-700 hover:border-brand-500 rounded-2xl bg-surface-950 p-6 relative cursor-pointer transition">
-            <input type="file" id="wizard-file-input" accept="audio/*" multiple class="absolute inset-0 opacity-0 cursor-pointer" onchange="handleMultipleAudioUpload(event)">
-            <svg class="w-10 h-10 mx-auto text-brand-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-            <h4 class="text-sm font-bold text-white">Click or drag & drop one or multiple audio tracks</h4>
-            <p class="text-slate-500 text-[11px] mt-1">Select multiple tracks (e.g. Tsehay Yohannes 1–25) • MP3, WAV, M4A</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- File Selector Area -->
+            <div class="text-center py-6 border-2 border-dashed border-slate-700 hover:border-brand-500 rounded-2xl bg-surface-950 p-5 relative cursor-pointer transition">
+              <input type="file" id="wizard-file-input" accept="audio/*" multiple class="absolute inset-0 opacity-0 cursor-pointer" onchange="handleMultipleAudioUpload(event)">
+              <svg class="w-8 h-8 mx-auto text-brand-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+              <h4 class="text-xs font-bold text-white">Upload Audio Files</h4>
+              <p class="text-slate-500 text-[10px] mt-1">Select one or multiple audio tracks (MP3, WAV)</p>
+            </div>
+
+            <!-- In-Browser Voice Recorder -->
+            <div class="p-5 bg-surface-950 rounded-2xl border border-slate-800 flex flex-col justify-between text-center">
+              <div>
+                <span class="font-bold text-white block text-xs mb-1">Live Voice Recording</span>
+                <p class="text-[11px] text-slate-400">Record commentary directly from your microphone</p>
+              </div>
+
+              <div class="my-3">
+                <span id="recording-timer" class="font-mono text-sm font-bold text-slate-300">00:00</span>
+                <span id="recording-indicator" class="hidden inline-flex items-center gap-1.5 ml-2 text-[10px] text-red-400 font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> REC
+                </span>
+              </div>
+
+              <div>
+                <button type="button" id="btn-start-record" onclick="toggleRecording()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-red-600/20 text-red-300 border border-red-500/30 hover:bg-red-600 hover:text-white transition inline-flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span> <span id="record-btn-text">Start Recording</span>
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- Capacity & Duration Status Gauge -->
@@ -428,22 +443,21 @@
               <div id="queue-progress-bar" class="h-full bg-brand-500 transition-all duration-300" style="width: 0%;"></div>
             </div>
 
-            <!-- Warning Alert (Hidden by default) -->
             <div id="duration-warning" class="hidden p-2.5 rounded-lg bg-red-950/50 border border-red-500/40 text-red-300 text-[11px] flex items-center gap-2">
               <svg class="w-4 h-4 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-              <span><strong>Duration Limit Exceeded!</strong> Total audio exceeds the maximum 180 minutes limit. Please remove or trim tracks.</span>
+              <span><strong>Duration Limit Exceeded!</strong> Total audio exceeds 180 minutes limit.</span>
             </div>
           </div>
 
-          <!-- Uploaded Audio Tracks Sequence List -->
+          <!-- Audio Track Sequence Queue -->
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="font-bold text-white text-xs">Audio Track Sequence (<span id="track-count">0</span> segments):</span>
-              <span class="text-[11px] text-slate-500">Reorder sequence using ▲ / ▼</span>
+              <span class="text-[11px] text-slate-500">Reorder with ▲ / ▼</span>
             </div>
             <div id="audio-tracks-queue" class="space-y-2 max-h-56 overflow-y-auto pr-1">
               <div class="p-4 text-center text-slate-500 bg-surface-950 rounded-xl border border-slate-800/80">
-                No audio tracks uploaded yet. Select files above to queue.
+                No audio tracks uploaded yet. Select files or record above.
               </div>
             </div>
           </div>
@@ -496,35 +510,30 @@
           <div class="space-y-3">
             <label class="font-bold text-white block">Publishing schedule</label>
             <div class="space-y-2">
-              <label class="flex items-center gap-2 text-slate-300">
-                <input type="radio" name="publish-time" value="now" checked class="text-brand-600"> Publish immediately to feed
+              <label class="flex items-center gap-2 text-slate-300 cursor-pointer">
+                <input type="radio" name="publish-time" value="now" checked onchange="toggleSchedulePicker(false)" class="text-brand-600"> Publish immediately to feed
               </label>
-              <label class="flex items-center gap-2 text-slate-300">
-                <input type="radio" name="publish-time" value="schedule" class="text-brand-600"> Schedule for a future date
+              <label class="flex items-center gap-2 text-slate-300 cursor-pointer">
+                <input type="radio" name="publish-time" value="schedule" onchange="toggleSchedulePicker(true)" class="text-brand-600"> Schedule for a future date
               </label>
+            </div>
+
+            <!-- Calendar & Time Picker -->
+            <div id="schedule-picker-box" class="hidden p-3 bg-surface-950 border border-slate-800 rounded-xl space-y-2">
+              <span class="text-slate-400 text-[11px] block">Pick release date and time:</span>
+              <input type="datetime-local" id="schedule-datetime" class="w-full px-3 py-2 rounded-lg bg-surface-900 border border-slate-700 text-white font-mono text-xs">
             </div>
           </div>
         </div>
       </div>
 
       <!-- Wizard Navigation Footer -->
-      <div class="px-6 py-4 border-t border-slate-800 bg-surface-950 flex items-center justify-between">
+      <div class="px-6 py-4 border-t border-slate-800 bg-surface-950 flex items-center justify-between shrink-0">
         <button id="wizard-back-btn" onclick="wizardBack()" class="px-4 py-2 rounded-xl text-slate-400 hover:text-white transition">Back</button>
-        <button id="wizard-next-btn" onclick="wizardNext()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold shadow transition">Next: Details ›</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SAVE DRAFT MODAL -->
-  <div id="modal-draft-prompt" class="fixed inset-0 z-60 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-surface-900 border border-slate-800 rounded-2xl max-w-sm w-full p-5 shadow-2xl space-y-4">
-      <div>
-        <h4 class="font-bold text-white text-sm">Save draft?</h4>
-        <p class="text-xs text-slate-400 mt-1">If you exit now, your episode will be saved as a draft in your catalog.</p>
-      </div>
-      <div class="flex justify-end gap-2 pt-2">
-        <button onclick="keepEditingWizard()" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-surface-800 hover:bg-slate-700">Keep editing</button>
-        <button onclick="saveAndExitDraft()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white">Save draft</button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="saveAsDraftDirectly()" class="px-4 py-2 rounded-xl bg-surface-800 hover:bg-slate-700 text-slate-300 font-semibold transition">Save as Draft</button>
+          <button id="wizard-next-btn" onclick="wizardNext()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold shadow transition">Next: Details ›</button>
+        </div>
       </div>
     </div>
   </div>
@@ -669,10 +678,18 @@
 
     let currentEpisode = null;
     let wizardCurrentStep = 1;
+    let activeStatusFilter = 'all';
 
-    // Multi-track audio queue state
+    // Multi-track audio queue
     let uploadedTracks = [];
     const MAX_DURATION_SECONDS = 180 * 60; // 3 hours limit
+
+    // Live Voice Recorder state
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let recordInterval = null;
+    let recordSeconds = 0;
+    let isRecording = false;
 
     const audio = document.getElementById('audio-engine');
     const playIcon = document.getElementById('play-icon');
@@ -780,10 +797,11 @@
 
     function renderEpisodes(list = episodes) {
       const container = document.getElementById('episodes-container');
-      document.getElementById('episode-count').textContent = `${list.length} Episodes available`;
+      const publicList = list.filter(e => e.status !== 'Draft');
+      document.getElementById('episode-count').textContent = `${publicList.length} Episodes available`;
       container.innerHTML = '';
 
-      list.forEach((ep) => {
+      publicList.forEach((ep) => {
         const isPlayingThis = currentEpisode && currentEpisode.id === ep.id && !audio.paused;
         const card = document.createElement('div');
         card.className = "bg-surface-900 border border-slate-800/80 hover:border-slate-700 rounded-xl p-4 sm:p-5 transition flex items-center justify-between gap-4 group";
@@ -800,7 +818,7 @@
                 <span>•</span>
                 <span>${ep.duration}</span>
                 <span>•</span>
-                <span class="text-emerald-400">${ep.status}</span>
+                <span class="${ep.status === 'Scheduled' ? 'text-amber-400' : 'text-emerald-400'}">${ep.status}</span>
               </div>
               <h3 class="text-xs sm:text-sm font-semibold text-slate-100 group-hover:text-brand-300 transition truncate fidel">
                 ${ep.title}
@@ -835,7 +853,7 @@
 
       audio.src = ep.audioUrl;
       audio.load();
-      audio.play().catch(e => console.log('Audio stream starting:', e));
+      audio.play().catch(e => console.log('Audio playback starting:', e));
       updatePlayerUI();
       renderEpisodes();
     }
@@ -855,7 +873,8 @@
     }
 
     function playFeatured() {
-      if (episodes.length > 0) playEpisode(episodes[0].id);
+      const firstPub = episodes.find(e => e.status !== 'Draft');
+      if (firstPub) playEpisode(firstPub.id);
     }
 
     function updatePlayerUI() {
@@ -937,6 +956,62 @@
       input.value = '';
     }
 
+    // ==================== LIVE VOICE RECORDER ====================
+    async function toggleRecording() {
+      const btn = document.getElementById('btn-start-record');
+      const text = document.getElementById('record-btn-text');
+      const indicator = document.getElementById('recording-indicator');
+      const timer = document.getElementById('recording-timer');
+
+      if (!isRecording) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          recordedChunks = [];
+          mediaRecorder = new MediaRecorder(stream);
+          mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+            const audioUrl = URL.createObjectURL(blob);
+            uploadedTracks.push({
+              id: `rec-${Date.now()}`,
+              name: `Live Voice Track (${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})})`,
+              sizeMb: (blob.size / (1024 * 1024)).toFixed(1),
+              url: audioUrl,
+              durationSec: recordSeconds || 30
+            });
+            renderUploadedTracks();
+            recordSeconds = 0;
+            timer.textContent = "00:00";
+          };
+
+          mediaRecorder.start();
+          isRecording = true;
+          text.textContent = "Stop Recording";
+          btn.className = "px-4 py-2 rounded-xl text-xs font-semibold bg-red-600 text-white shadow-lg shadow-red-600/40 transition inline-flex items-center gap-1.5";
+          indicator.classList.remove('hidden');
+
+          recordSeconds = 0;
+          recordInterval = setInterval(() => {
+            recordSeconds++;
+            timer.textContent = formatTime(recordSeconds);
+          }, 1000);
+
+        } catch (err) {
+          alert('Microphone access denied or unavailable: ' + err.message);
+        }
+      } else {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+          mediaRecorder.stop();
+          mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        }
+        clearInterval(recordInterval);
+        isRecording = false;
+        text.textContent = "Start Recording";
+        btn.className = "px-4 py-2 rounded-xl text-xs font-semibold bg-red-600/20 text-red-300 border border-red-500/30 hover:bg-red-600 hover:text-white transition inline-flex items-center gap-1.5";
+        indicator.classList.add('hidden');
+      }
+    }
+
     // ==================== MULTI-TRACK AUDIO UPLOAD & REORDERING ====================
     function handleMultipleAudioUpload(event) {
       const files = Array.from(event.target.files);
@@ -947,13 +1022,12 @@
         const tempAudio = new Audio();
         tempAudio.src = objectUrl;
 
-        // Estimate duration fallback
         const trackItem = {
           id: `trk-${Date.now()}-${Math.random()}`,
           name: file.name,
           sizeMb: (file.size / (1024 * 1024)).toFixed(1),
           url: objectUrl,
-          durationSec: 180 // default estimate until metadata loads
+          durationSec: 180
         };
 
         tempAudio.addEventListener('loadedmetadata', () => {
@@ -967,7 +1041,7 @@
       });
 
       renderUploadedTracks();
-      event.target.value = ''; // Reset input to allow adding more files
+      event.target.value = '';
     }
 
     function renderUploadedTracks() {
@@ -982,7 +1056,7 @@
       if (!uploadedTracks.length) {
         listContainer.innerHTML = `
           <div class="p-4 text-center text-slate-500 bg-surface-950 rounded-xl border border-slate-800/80">
-            No audio tracks uploaded yet. Select files above to queue.
+            No audio tracks uploaded yet. Select files or record above.
           </div>
         `;
         durationBadge.textContent = "00:00 / 03:00:00 Max";
@@ -991,7 +1065,6 @@
         return;
       }
 
-      // Calculate total duration
       const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0);
       const formattedTotal = formatTime(totalSec);
       const pct = Math.min(100, (totalSec / MAX_DURATION_SECONDS) * 100);
@@ -1047,10 +1120,12 @@
       renderUploadedTracks();
     }
 
-    // ==================== WIZARD & MODAL CONTROLS ====================
+    // ==================== WIZARD LOGIC & FORCE CLOSE ====================
     function openWizardStep(step) {
       wizardCurrentStep = step;
-      document.getElementById('modal-wizard').classList.remove('hidden');
+      const wizardModal = document.getElementById('modal-wizard');
+      wizardModal.style.display = 'flex';
+      wizardModal.classList.remove('hidden');
 
       [1, 2, 3].forEach(s => {
         document.getElementById(`wizard-step-${s}`).classList.add('hidden');
@@ -1081,10 +1156,29 @@
       }
     }
 
+    function forceCloseWizard() {
+      if (isRecording) toggleRecording();
+      const wizardModal = document.getElementById('modal-wizard');
+      wizardModal.style.display = 'none';
+      wizardModal.classList.add('hidden');
+    }
+
+    function toggleSchedulePicker(isSchedule) {
+      const box = document.getElementById('schedule-picker-box');
+      if (isSchedule) {
+        box.classList.remove('hidden');
+        // set default to tomorrow
+        const tomorrow = new Date(Date.now() + 86400000);
+        document.getElementById('schedule-datetime').value = tomorrow.toISOString().slice(0, 16);
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
     function wizardNext() {
       if (wizardCurrentStep === 1) {
         if (!uploadedTracks.length) {
-          alert('Please select at least one audio track to proceed.');
+          alert('Please upload or record at least one audio track to proceed.');
           return;
         }
         const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0);
@@ -1109,25 +1203,17 @@
       if (wizardCurrentStep > 1) openWizardStep(wizardCurrentStep - 1);
     }
 
-    function requestCloseWizard() {
-      document.getElementById('modal-draft-prompt').classList.remove('hidden');
-    }
-
-    function keepEditingWizard() {
-      document.getElementById('modal-draft-prompt').classList.add('hidden');
-    }
-
-    function saveAndExitDraft() {
-      document.getElementById('modal-draft-prompt').classList.add('hidden');
+    function saveAsDraftDirectly() {
       const title = document.getElementById('wizard-input-title').value.trim() || "Untitled Draft";
       const desc = document.getElementById('wizard-input-desc').value || "";
       const primaryUrl = uploadedTracks.length ? uploadedTracks[0].url : "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-      
+      const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0);
+
       const draftEp = {
         id: `ep-${Date.now()}`,
         title: title,
         date: "Draft",
-        duration: "Draft",
+        duration: formatTime(totalSec) || "00:00",
         status: "Draft",
         plays: 0,
         desc: desc,
@@ -1136,23 +1222,29 @@
 
       episodes.unshift(draftEp);
       persistEpisodes();
-      document.getElementById('modal-wizard').classList.add('hidden');
+      forceCloseWizard();
       renderAdminTable();
       renderEpisodes();
-      alert('Saved as draft in your catalog.');
+      alert('Episode successfully saved as Draft!');
     }
 
     function finishAndPublishWizard() {
       const title = document.getElementById('wizard-input-title').value.trim();
       const desc = document.getElementById('wizard-input-desc').value;
       const isSchedule = document.querySelector('input[name="publish-time"]:checked').value === 'schedule';
+      const scheduleTime = document.getElementById('schedule-datetime').value;
       const totalSec = uploadedTracks.reduce((acc, t) => acc + (t.durationSec || 0), 0) || 2700;
       const primaryUrl = uploadedTracks.length ? uploadedTracks[0].url : "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+
+      let displayDate = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      if (isSchedule && scheduleTime) {
+        displayDate = new Date(scheduleTime).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      }
 
       const newEp = {
         id: `ep-${Date.now()}`,
         title: title,
-        date: isSchedule ? "Scheduled" : new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+        date: displayDate,
         duration: formatTime(totalSec),
         status: isSchedule ? "Scheduled" : "Published",
         plays: 0,
@@ -1162,10 +1254,10 @@
 
       episodes.unshift(newEp);
       persistEpisodes();
-      document.getElementById('modal-wizard').classList.add('hidden');
+      forceCloseWizard();
       renderAdminTable();
       renderEpisodes();
-      alert(`Episode "${title}" successfully published!`);
+      alert(`Episode "${title}" successfully ${isSchedule ? 'scheduled' : 'published'}!`);
     }
 
     function updateWizardTitleCount(val) {
@@ -1178,17 +1270,72 @@
 
     function persistEpisodes() {
       localStorage.setItem('bitew_podcast_episodes', JSON.stringify(episodes));
+      updateFilterCounts();
+    }
+
+    // ==================== FILTER PILLS & ADMIN TABLE ====================
+    function filterStatus(status) {
+      activeStatusFilter = status;
+      ['all', 'draft', 'published', 'scheduled'].forEach(s => {
+        const btn = document.getElementById(`pill-${s}`);
+        if (s.toLowerCase() === status.toLowerCase()) {
+          btn.className = "px-3 py-1.5 rounded-lg font-semibold bg-brand-600 text-white";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 bg-surface-900 border border-slate-800";
+        }
+      });
+      renderAdminTable();
+    }
+
+    function updateFilterCounts() {
+      document.getElementById('count-all').textContent = episodes.length;
+      document.getElementById('count-draft').textContent = episodes.filter(e => e.status === 'Draft').length;
+      document.getElementById('count-published').textContent = episodes.filter(e => e.status === 'Published').length;
+      document.getElementById('count-scheduled').textContent = episodes.filter(e => e.status === 'Scheduled').length;
+    }
+
+    function deleteEpisodeById(id) {
+      const ep = episodes.find(e => e.id === id);
+      if (!ep) return;
+      if (confirm(`Are you sure you want to permanently delete "${ep.title}"?`)) {
+        episodes = episodes.filter(e => e.id !== id);
+        if (currentEpisode && currentEpisode.id === id) {
+          audio.pause();
+          currentEpisode = null;
+          updatePlayerUI();
+        }
+        persistEpisodes();
+        renderAdminTable();
+        renderEpisodes();
+      }
     }
 
     function renderAdminTable() {
       const table = document.getElementById('admin-episodes-table');
       table.innerHTML = '';
-      episodes.forEach(ep => {
+
+      let list = episodes;
+      if (activeStatusFilter !== 'all') {
+        list = episodes.filter(e => e.status.toLowerCase() === activeStatusFilter.toLowerCase());
+      }
+
+      updateFilterCounts();
+
+      if (!list.length) {
+        table.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-500">No episodes found under "${activeStatusFilter}" status.</td></tr>`;
+        return;
+      }
+
+      list.forEach(ep => {
         const row = document.createElement('tr');
         row.className = "hover:bg-surface-800/40 transition";
-        const statusBadge = ep.status === 'Draft' 
-          ? `<span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/30">Draft</span>`
-          : `<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">${ep.status}</span>`;
+        
+        let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Published</span>`;
+        if (ep.status === 'Draft') {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/30">Draft</span>`;
+        } else if (ep.status === 'Scheduled') {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] bg-purple-500/10 text-purple-400 border border-purple-500/30">Scheduled</span>`;
+        }
 
         row.innerHTML = `
           <td class="py-3 px-4 max-w-xs truncate text-white fidel">${ep.title}</td>
@@ -1199,7 +1346,8 @@
           <td class="py-3 px-4 font-mono text-slate-300">${ep.plays || 0}</td>
           <td class="py-3 px-4 text-right">
             <button onclick="playEpisode('${ep.id}')" class="text-brand-400 hover:underline mr-2">Play</button>
-            <button onclick="openNotesModal('${ep.id}')" class="text-slate-400 hover:text-white">Edit</button>
+            <button onclick="openNotesModal('${ep.id}')" class="text-slate-400 hover:text-white mr-2">Notes</button>
+            <button onclick="deleteEpisodeById('${ep.id}')" class="text-red-400 hover:text-red-300 hover:underline">Delete</button>
           </td>
         `;
         table.appendChild(row);
@@ -1222,19 +1370,18 @@
       renderEpisodes(filtered);
     }
 
-    // Keyboard support: Escape closes wizard
+    // Escape Key Listener to Force Close Any Open Wizard
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        const wizard = document.getElementById('modal-wizard');
-        if (!wizard.classList.contains('hidden')) {
-          requestCloseWizard();
-        }
+        forceCloseWizard();
+        closeNotesModal();
       }
     });
 
     window.addEventListener('DOMContentLoaded', () => {
       applySettingsToUI();
       renderEpisodes();
+      updateFilterCounts();
     });
   </script>
 </body>
